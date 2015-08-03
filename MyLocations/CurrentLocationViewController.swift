@@ -21,7 +21,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     let locationManager = CLLocationManager() // CLLocationManager is the object that gives us the GPS coordinates
     
     @IBAction func getLocation() {
-        // do nothing yet
+        locationManager.delegate = self//view controller is the delegate
+        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+        locationManager.startUpdatingLocation()
     }
     
     override func viewDidLoad() {
@@ -33,7 +35,17 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
-}
+    
+    //protocol method implementation
+    //MARK: - CLLocationManagerDelegate
+    func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
+        println("didFailWithError \(error)")
+    }
+    
+    func locationManager(manager:CLLocationManager!, didUpdateLocations locations:[AnyObject]!) {
+        let newLocation = locations.last as! CLLocation
+        println("didUpdateLocations \(newLocation)")
+    }//end of protocol method
+    
+}//end of CurrentLocationViewController class
 
