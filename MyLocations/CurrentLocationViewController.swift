@@ -92,7 +92,23 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             longitudeLabel.textColor = UIColor.redColor()
             addressLabel.text = " "
             tagButton.hidden = true
-            messageLabel.text = "Tap 'Get Location' to Start"
+            
+            var statusMessage: String
+            if let error = lastLocationError {
+                if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
+                    statusMessage = "Location Services Disabled"
+                } else {
+                    statusMessage = "Error Getting Location"
+            }
+            
+            } else if !CLLocationManager.locationServicesEnabled() {
+                statusMessage = "Location Services Disabled"
+            } else if updatingLocation {
+                statusMessage = "Searching..."
+            } else {
+                statusMessage = "Tap 'Get My Location' to Start"
+            }
+            messageLabel.text = statusMessage
         }
     }
     
