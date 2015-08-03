@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import CoreLocation //adds Core Location Framework to the project
 
-class CurrentLocationViewController: UIViewController {
+class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var latitudeLabel: UILabel!
@@ -16,6 +17,8 @@ class CurrentLocationViewController: UIViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var tagButton: UIButton!
     @IBOutlet weak var getButton: UIButton!
+    
+    let locationManager = CLLocationManager() // CLLocationManager is the object that gives us the GPS coordinates
     
     @IBAction func getLocation() {
         // do nothing yet
