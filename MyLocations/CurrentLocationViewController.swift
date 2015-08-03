@@ -21,6 +21,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     let locationManager = CLLocationManager() // CLLocationManager is the object that gives us the GPS coordinates
     var location: CLLocation? //stores user's current location
     
+    var updatingLocation = false
+    var lastLocationError: NSError?
+    
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .NotDetermined {
@@ -51,6 +54,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     //MARK: - CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("didFailWithError \(error)")
+    
+        if error.code == CLError.LocationUnknown.rawValue {
+            return
+        }
+        lastLocationError = error
+        stopLocationManager()
+        updateLabels()
     }
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:[AnyObject]!) {
