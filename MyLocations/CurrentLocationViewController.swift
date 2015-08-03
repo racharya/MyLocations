@@ -95,5 +95,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             messageLabel.text = "Tap 'Get Location' to Start"
         }
     }
+    
+    func stopLocationManager() {
+        if updatingLocation {
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            updatingLocation = false
+        }
+    }
 }//end of CurrentLocationViewController class
 
