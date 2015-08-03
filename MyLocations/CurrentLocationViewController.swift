@@ -19,7 +19,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var getButton: UIButton!
     
     let locationManager = CLLocationManager() // CLLocationManager is the object that gives us the GPS coordinates
-    
+    var location: CLLocation? //stores user's current location
     
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
@@ -55,6 +55,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:[AnyObject]!) {
         let newLocation = locations.last as! CLLocation
         println("didUpdateLocations \(newLocation)")
+        location = newLocation
+        updateLabels()
     }//end of protocol method
     
     func showLocationServicesDeniedAlert() {
@@ -66,5 +68,19 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         presentViewController(alert, animated: true, completion: nil)
     }
     
+    func updateLabels() {
+        if let location = location {
+            latitudeLabel.text = String(format:"%.8f", location.coordinate.latitude)
+            longitudeLabel.text = String(format:"%.8f", location.coordinate.longitude)
+            tagButton.hidden = false
+            messageLabel.text = " "
+        } else {
+            latitudeLabel.text = " "
+            longitudeLabel.text = " "
+            addressLabel.text = " "
+            tagButton.hidden = true
+            messageLabel.text = "Tap 'Get Location' to Start"
+        }
+    }
 }//end of CurrentLocationViewController class
 
