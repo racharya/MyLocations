@@ -20,7 +20,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     let locationManager = CLLocationManager() // CLLocationManager is the object that gives us the GPS coordinates
     
+    
     @IBAction func getLocation() {
+        let authStatus = CLLocationManager.authorizationStatus()
+        if authStatus == .NotDetermined {
+            locationManager.requestWhenInUseAuthorization()
+            return
+        }
         locationManager.delegate = self//view controller is the delegate
         locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
         locationManager.startUpdatingLocation()
