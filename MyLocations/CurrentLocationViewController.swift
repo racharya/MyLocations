@@ -38,6 +38,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        updateLabels()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -76,7 +77,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             messageLabel.text = " "
         } else {
             latitudeLabel.text = " "
+            latitudeLabel.textColor = UIColor.redColor()
             longitudeLabel.text = " "
+            longitudeLabel.textColor = UIColor.redColor()
             addressLabel.text = " "
             tagButton.hidden = true
             messageLabel.text = "Tap 'Get Location' to Start"
