@@ -205,6 +205,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func stopLocationManager() {
         if updatingLocation {
+            //cancelling timer when the location manager is stopped before time-out fires
             if let timer = timer {
                 timer.invalidate()
             }
@@ -221,6 +222,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             locationManager.startUpdatingLocation()
             updatingLocation = true
             
+            //set up timer object which sends out "didTimeOut" msg to self after 60 secs
+            //selector describes the name of the method
             timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("didTimeOut"), userInfo: nil, repeats: false)
         }
     }
@@ -238,6 +241,20 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         return "\(placemark.subThoroughfare) \(placemark.thoroughfare) \n" +
                "\(placemark.locality) \(placemark.administrativeArea) " +
                "\(placemark.postalCode)"
+    }
+    
+    // called after 1 min whether valid location or not
+  
+    func didTimeOut() {
+        println("*** TIme out")
+         //if no valid location, stop the location manager
+        if location == nil {
+            stopLocationManager()
+            //error domain is not kCLErrorDomain because this error comes from within the app
+            lastLocationError = NSError(domain:"MyLocationsErrorDomain", code: 1, userInfo: nil)
+            updateLabels()
+            configureGetButton()
+        }
     }
 }//end of CurrentLocationViewController class
 
