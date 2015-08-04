@@ -44,6 +44,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         } else {
             location = nil
             lastLocationError = nil
+            placemark = nil
+            lastGeocodingError = nil
             startLocationManager()
         }
         updateLabels()
@@ -116,7 +118,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     println("*** Found placemarks: \(placemarks), error: \(error)")
                     self.lastGeocodingError = error
                     if error == nil && !placemarks.isEmpty {
-                        self.placemarks.last as? CLPlacemark
+                        self.placemark = placemarks.last as? CLPlacemark
                     } else {
                         self.placemark = nil
                     }
