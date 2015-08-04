@@ -65,6 +65,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:[AnyObject]!) {
         let newLocation = locations.last as! CLLocation
         println("didUpdateLocations \(newLocation)")
+        lastLocationError = nil
         location = newLocation
         updateLabels()
     }//end of protocol method
