@@ -24,6 +24,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var updatingLocation = false
     var lastLocationError: NSError?
     
+    let geocoder = CLGeocoder()// performs geocoding
+    var placemark: CLPlacemark?// contains the address result
+    var performingReverseGeocoding = false
+    var lastGeocodingError: NSError?
+    
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .NotDetermined {
@@ -43,7 +48,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
         updateLabels()
         configureGetButton()
-    }
+        }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -103,6 +108,14 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 stopLocationManager()
                 configureGetButton()
             }
+            if !performingReverseGeocoding {
+                println("*** Going to geocode")
+                performingReverseGeocoding = true
+                geocoder.reverseGeocodeLocation(location, completionHandler: {placemarks, error in
+                    println("*** Found placemarks: \(placemarks), error: \(error)")
+                })
+            }
+        
         }
     }//end of protocol method
     
