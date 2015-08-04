@@ -205,5 +205,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             getButton.setTitle("Get My Location", forState: .Normal)
         }
     }
+    
+    func stringFromPlacemark(placemark : CLPlacemark) -> String {
+        return "\(placemark.subThoroughfare) \(placemark.thoroughfare)\n" +
+               "\(placemark.locality) \(placemark.administrativeArea) " +
+               "\(placemark.postalCode)"
+    }
 }//end of CurrentLocationViewController class
 
