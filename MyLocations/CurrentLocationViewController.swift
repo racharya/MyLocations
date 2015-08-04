@@ -29,6 +29,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var performingReverseGeocoding = false
     var lastGeocodingError: NSError?
     
+    var timer: NSTimer?
+    
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .NotDetermined {
@@ -115,7 +117,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 stopLocationManager()
                 configureGetButton()
                 //improving code to run in real device
-                if distance > 0 {
+                if distance > 0 {//forces reverse geocoding for the final location even if the app
+                    //is already currently performing another geocoding request
                     performingReverseGeocoding = false
                 }
             }
@@ -136,7 +139,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     self.updateLabels()
                 })
             }
-            //improving code to run in real device
+            //real improvement code.improving code to run in real device
         } else if distance  < 1.0 {
             let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
             if timeInterval > 10 {
@@ -202,6 +205,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     func stopLocationManager() {
         if updatingLocation {
+            if let timer = timer {
+                timer.invalidate()
+            }
             locationManager.stopUpdatingLocation()
             locationManager.delegate = nil
             updatingLocation = false
@@ -214,6 +220,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             updatingLocation = true
+            
+            timer = NSTimer.scheduledTimerWithTimeInterval(60, target: self, selector: Selector("didTimeOut"), userInfo: nil, repeats: false)
         }
     }
     
