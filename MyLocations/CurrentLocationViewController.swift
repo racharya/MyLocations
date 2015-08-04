@@ -36,11 +36,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
         startLocationManager()
         updateLabels()
+        configureGetButton()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLabels()
+        configureGetButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
 
@@ -60,6 +62,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         lastLocationError = error
         stopLocationManager()
         updateLabels()
+        configureGetButton()
     }
     
     func locationManager(manager:CLLocationManager!, didUpdateLocations locations:[AnyObject]!) {
@@ -92,6 +95,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
             println("*** We're done!")
             stopLocationManager()
+            configureGetButton()
         }
         }
     }//end of protocol method
@@ -152,6 +156,14 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
             locationManager.startUpdatingLocation()
             updatingLocation = true
+        }
+    }
+    
+    func configureGetButton() {
+        if updatingLocation {
+            getButton.setTitle("Stop", forState: .Normal)
+        } else {
+            getButton.setTitle("Get My Location", forState: .Normal)
         }
     }
 }//end of CurrentLocationViewController class
