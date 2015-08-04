@@ -34,7 +34,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             showLocationServicesDeniedAlert()
             return
         }
-        startLocationManager()
+        if updatingLocation {
+            startLocationManager()
+        } else {
+            location = nil
+            lastLocationError = nil
+            startLocationManager()
+        }
         updateLabels()
         configureGetButton()
     }
@@ -45,7 +51,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         configureGetButton()
         // Do any additional setup after loading the view, typically from a nib.
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -55,7 +61,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     //MARK: - CLLocationManagerDelegate
     func locationManager(manager: CLLocationManager!, didFailWithError error: NSError!) {
         println("didFailWithError \(error)")
-    
+        
         if error.code == CLError.LocationUnknown.rawValue {
             return
         }
@@ -90,13 +96,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             location = newLocation
             updateLabels()
             
-        //5 if new location accuracy is equal or better than the desired accuracy, stop asking location
+            //5 if new location accuracy is equal or better than the desired accuracy, stop asking location
             //manager for updates
-        if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
-            println("*** We're done!")
-            stopLocationManager()
-            configureGetButton()
-        }
+            if newLocation.horizontalAccuracy <= locationManager.desiredAccuracy {
+                println("*** We're done!")
+                stopLocationManager()
+                configureGetButton()
+            }
         }
     }//end of protocol method
     
@@ -129,8 +135,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     statusMessage = "Location Services Disabled"
                 } else {
                     statusMessage = "Error Getting Location"
-            }
-            
+                }
+                
             } else if !CLLocationManager.locationServicesEnabled() {
                 statusMessage = "Location Services Disabled"
             } else if updatingLocation {
@@ -162,6 +168,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     func configureGetButton() {
         if updatingLocation {
             getButton.setTitle("Stop", forState: .Normal)
+            
         } else {
             getButton.setTitle("Get My Location", forState: .Normal)
         }
