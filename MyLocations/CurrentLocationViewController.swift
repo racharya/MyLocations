@@ -111,8 +111,17 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             if !performingReverseGeocoding {
                 println("*** Going to geocode")
                 performingReverseGeocoding = true
+                //use closure. things before "in" are the parameter and println is the closure body
                 geocoder.reverseGeocodeLocation(location, completionHandler: {placemarks, error in
                     println("*** Found placemarks: \(placemarks), error: \(error)")
+                    self.lastGeocodingError = error
+                    if error == nil && !placemarks.isEmpty {
+                        self.placemarks.last as? CLPlacemark
+                    } else {
+                        self.placemark = nil
+                    }
+                    self.performingReverseGeocoding = false
+                    self.updateLabels()
                 })
             }
         
