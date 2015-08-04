@@ -95,6 +95,11 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             return
         }
         
+        //improving this method so that it works in the actual device
+        var distance = CLLocationDistance(DBL_MAX)
+        if let location = location{
+            distance = newLocation.distanceFromLocation(location)
+        }
         //3 determining if new reading is more useful
         if location == nil || location!.horizontalAccuracy > newLocation.horizontalAccuracy {
             
@@ -109,10 +114,15 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 println("*** We're done!")
                 stopLocationManager()
                 configureGetButton()
+                //improving code to run in real device
+                if distance > 0 {
+                    performingReverseGeocoding = false
+                }
             }
             if !performingReverseGeocoding {
                 println("*** Going to geocode")
                 performingReverseGeocoding = true
+                
                 //use closure. things before "in" are the parameter and println is the closure body
                 geocoder.reverseGeocodeLocation(location, completionHandler: {placemarks, error in
                     println("*** Found placemarks: \(placemarks), error: \(error)")
@@ -126,7 +136,15 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     self.updateLabels()
                 })
             }
-        
+            //improving code to run in real device
+        } else if distance  < 1.0 {
+            let timeInterval = newLocation.timestamp.timeIntervalSinceDate(location!.timestamp)
+            if timeInterval > 10 {
+                println("*** Force done!")
+                stopLocationManager()
+                updateLabels()
+                configureGetButton()
+            }
         }
     }//end of protocol method
     
@@ -209,7 +227,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func stringFromPlacemark(placemark : CLPlacemark) -> String {
-        return "\(placemark.subThoroughfare) \(placemark.thoroughfare)\n" +
+        return "\(placemark.subThoroughfare) \(placemark.thoroughfare) \n" +
                "\(placemark.locality) \(placemark.administrativeArea) " +
                "\(placemark.postalCode)"
     }
