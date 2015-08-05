@@ -18,7 +18,7 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var coordinate = CLLocationCoordinate2D(latitude:0, longitude:0)
+    var coordinate = CLLocationCoordinate2D(latitude:0, longitude:0)// CLLocationCoordinate2D is a struct
     var placemark: CLPlacemark?
     
     @IBAction func done() {
@@ -27,5 +27,22 @@ class LocationDetailsViewController: UITableViewController {
     
     @IBAction func cancel() {
         dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        descriptionTextView.text = " "
+        categoryLabel.text = " "
+        
+        latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
+        longitudeLabel.text = String(format:"%.8f", coordinate.longitude)
+        
+        if let placemark = placemark {
+            addressLabel.text = stringFromPlacemark(placemark)
+        } else {
+            addressLabel.text = "No Address Found"
+        }
+        dateLabel.text = formatDate(NSDate())
     }
 }
