@@ -35,6 +35,7 @@ class LocationDetailsViewController: UITableViewController {
     
     
     @IBAction func done() {
+        println("Description '\(descriptionText)' ")
         dismissViewControllerAnimated(true, completion: nil)
     }
     
