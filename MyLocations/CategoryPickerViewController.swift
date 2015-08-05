@@ -37,7 +37,7 @@ class CategoryPickerViewController: UITableViewController {
         }
         return cell
     }
-    gs
+    
     
     // MARK: - UITableViewDelegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
