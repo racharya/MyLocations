@@ -14,6 +14,7 @@
 		8045698F1B6EEFCD0064035E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8045698E1B6EEFCD0064035E /* Images.xcassets */; };
 		804569921B6EEFCD0064035E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804569901B6EEFCD0064035E /* LaunchScreen.xib */; };
 		8045699E1B6EEFCD0064035E /* MyLocationsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8045699D1B6EEFCD0064035E /* MyLocationsTests.swift */; };
+		80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -38,6 +39,7 @@
 		804569971B6EEFCD0064035E /* MyLocationsTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MyLocationsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8045699C1B6EEFCD0064035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8045699D1B6EEFCD0064035E /* MyLocationsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLocationsTests.swift; sourceTree = "<group>"; };
+		80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 				8045698E1B6EEFCD0064035E /* Images.xcassets */,
 				804569901B6EEFCD0064035E /* LaunchScreen.xib */,
 				804569831B6EEFCD0064035E /* Supporting Files */,
+				80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */,
 				8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */,
 				804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */,
 				804569881B6EEFCD0064035E /* CurrentLocationViewController.swift in Sources */,
