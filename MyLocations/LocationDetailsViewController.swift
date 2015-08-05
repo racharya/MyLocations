@@ -17,7 +17,7 @@ private let dateFormatter: NSDateFormatter = {
     formatter.dateStyle = .MediumStyle
     formatter.timeStyle = .ShortStyle
     return formatter
-}()// if () is left out then dateFormatter will contain block of code and not an actual NSDateFormatter object
+    }()// if () is left out then dateFormatter will contain block of code and not an actual NSDateFormatter object
 //with () in place, the code inside {} are run
 
 class LocationDetailsViewController: UITableViewController {
@@ -33,6 +33,8 @@ class LocationDetailsViewController: UITableViewController {
     
     var descriptionText = ""
     
+    var categoryName = "No Category" //temporarily stores the chosen category
+    
     
     @IBAction func done() {
         println("Description '\(descriptionText)' ")
@@ -47,7 +49,7 @@ class LocationDetailsViewController: UITableViewController {
         super.viewDidLoad()
         
         descriptionTextView.text = descriptionText
-        categoryLabel.text = " "
+        categoryLabel.text = categoryName
         
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
         longitudeLabel.text = String(format:"%.8f", coordinate.longitude)
@@ -65,7 +67,7 @@ class LocationDetailsViewController: UITableViewController {
             "\(placemark.subThoroughfare) \(placemark.thoroughfare), " +
             "\(placemark.locality), " +
             "\(placemark.administrativeArea) \(placemark.postalCode)," +
-            "\(placemark.country)"
+        "\(placemark.country)"
     }
     
     func formatDate(date: NSDate) -> String {
@@ -91,6 +93,13 @@ class LocationDetailsViewController: UITableViewController {
         return addressLabel.frame.size.height + 20
     } else {
         return 44
+        }
+    }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "PickCategory" {
+            let controller = segue.destinationViewController as! CategoryPickerViewController
+            controller.selectedCategoryName = categoryName
         }
     }
 }//end of LocationDetailsViewController class
