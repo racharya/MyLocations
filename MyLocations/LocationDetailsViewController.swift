@@ -31,6 +31,9 @@ class LocationDetailsViewController: UITableViewController {
     var coordinate = CLLocationCoordinate2D(latitude:0, longitude:0)// CLLocationCoordinate2D is a struct
     var placemark: CLPlacemark?
     
+    var descriptionText = ""
+    
+    
     @IBAction func done() {
         dismissViewControllerAnimated(true, completion: nil)
     }
@@ -42,7 +45,7 @@ class LocationDetailsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        descriptionTextView.text = " "
+        descriptionTextView.text = descriptionText
         categoryLabel.text = " "
         
         latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
