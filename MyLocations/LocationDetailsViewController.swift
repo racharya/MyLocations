@@ -75,10 +75,15 @@ class LocationDetailsViewController: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
         return 88
     } else if indexPath.section == 2 && indexPath.row == 2 {
+        //1. changes width of label to 155 points less then width of the screen and height is set at 10000
         addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115, height: 10000)
+        //2. resizing to fit after word wrap, removes extra spaces
         addressLabel.sizeToFit()
-        addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width -15
         
+        //3. placing label against  the right edge of the screen  with a 15 point margin between them
+        addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width-15
+        
+        //4. adding 10 points margin at top and bottom each and then calculating full height of the cell
         return addressLabel.frame.size.height + 20
     } else {
         return 44
