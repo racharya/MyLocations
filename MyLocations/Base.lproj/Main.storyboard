@@ -320,7 +320,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <segue destination="jiO-Ix-ADP" kind="unwind" unwindAction="categoryPickerDidPickCategory:" id="HgD-w7-05i"/>
+                                    <segue destination="jiO-Ix-ADP" kind="unwind" identifier="PickedCategory" unwindAction="categoryPickerDidPickCategory:" id="HgD-w7-05i"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
