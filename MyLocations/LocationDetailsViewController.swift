@@ -92,4 +92,15 @@ class LocationDetailsViewController: UITableViewController {
         return 44
         }
     }
+}//end of LocationDetailsViewController class
+
+extension LocationDetailsViewController: UITextViewDelegate {
+    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
+    descriptionText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+    return true
+    }
+    
+    func textViewDidEndEditing(textView: UITextView) {
+        descriptionText = textView.text
+    }
 }
