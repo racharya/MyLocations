@@ -319,6 +319,9 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <segue destination="jiO-Ix-ADP" kind="unwind" unwindAction="categoryPickerDidPickCategory:" id="HgD-w7-05i"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -329,6 +332,7 @@
                     <navigationItem key="navigationItem" id="sBq-H1-HNT"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nJQ-IC-NF1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="jiO-Ix-ADP" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1698" y="-303"/>
         </scene>
