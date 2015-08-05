@@ -10,6 +10,16 @@ import Foundation
 import UIKit
 import CoreLocation
 
+//This is a private global constant that is only visible to this class but lives outside of this class
+// closure implemented to create object and set its properties in one go
+private let dateFormatter: NSDateFormatter = {
+    let formatter = NSDateFormatter()
+    formatter.dateStyle = .MediumStyle
+    formatter.timeStyle = .ShortStyle
+    return formatter
+}()// if () is left out then dateFormatter will contain block of code and not an actual NSDateFormatter object
+//with () in place, the code inside {} are run
+
 class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var descriptionTextView: UITextView!
     @IBOutlet weak var categoryLabel: UILabel!
@@ -45,4 +55,17 @@ class LocationDetailsViewController: UITableViewController {
         }
         dateLabel.text = formatDate(NSDate())
     }
+    
+    func stringFromPlacemark(placemark: CLPlacemark) -> String {
+        return
+            "\(placemark.subThoroughfare) \(placemark.thoroughfare), " +
+            "\(placemark.locality), " +
+            "\(placemark.administrativeArea) \(placemark.postalCode)," +
+            "\(placemark.country)"
+    }
+    
+    func formatDate(date: NSDate) -> String {
+        return dateFormatter.stringFromDate(date)
+    }
+    
 }
