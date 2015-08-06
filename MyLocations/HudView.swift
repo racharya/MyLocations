@@ -58,11 +58,12 @@ class HudView: UIView {
             alpha = 0 // fully transparent
             transform = CGAffineTransformMakeScale(1.3, 1.3)// view initially stretched out
             //2. sets up an animation, closure describes animation
-            UIView.animateWithDuration(0.3, animations: {
+            UIView.animateWithDuration(0.3, delay: 0, usingSpringWithDamping:0.7, initialSpringVelocity:0.5, options: UIViewAnimationOptions(0), animations: {
                 //3. set up new state of the view that it should have after the animation completes
                 self.alpha = 1 // fully opaque
                 self.transform = CGAffineTransformIdentity//restores scale back to normal, use self due to part of closure
-            })
+            },
+            completion: nil)
         }
     }
 }
