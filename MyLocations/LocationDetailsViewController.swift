@@ -138,6 +138,12 @@ class LocationDetailsViewController: UITableViewController {
         }
         descriptionTextView.resignFirstResponder()
     }
+    
+    //fixing textview frame size to work on any device
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        descriptionTextView.frame.size.width = view.frame.size.width - 30 // 15 points margin on left and right side
+    }
 }//end of LocationDetailsViewController class
 
 extension LocationDetailsViewController: UITextViewDelegate {
