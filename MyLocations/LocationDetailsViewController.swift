@@ -96,6 +96,22 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
+    //limits taps to just the cells from the first two sections
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if indexPath.section == 0 || indexPath.section == 1 {
+            return indexPath
+        } else {
+            return nil
+        }
+    }
+    
+    //handles the actual taps on the rows
+    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if indexPath.section == 0 && indexPath.row == 0 {
+            descriptionTextView.becomeFirstResponder()
+        }
+    } // End of UITableViewDelegate
+    
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "PickCategory" {
             let controller = segue.destinationViewController as! CategoryPickerViewController
