@@ -39,5 +39,15 @@ class HudView: UIView {
             let imagePoint = CGPoint(x: center.x - round(image.size.width / 2), y: center.y - round(image.size.height / 2) - boxHeight / 8)
             image.drawAtPoint(imagePoint)
         }
+        // Creating own text drawing
+        // step 1) find out how big the text is so you can figure out where to position it
+        // step 2) create UIFont object and foreground color into a dictionary named attribs
+        // step 3) use attribs to calculate how wide and tall the text will be
+        // step 4) calculate and draw it
+        let attribs = [NSFontAttributeName: UIFont.systemFontOfSize(16.0), NSForegroundColorAttributeName: UIColor.whiteColor()]
+        let textSize = text.sizeWithAttributes(attribs)
+        
+        let textPoint = CGPoint(x: center.x - round(textSize.width / 2), y: center.y - round(textSize.height / 2) + boxHeight / 4)
+        text.drawAtPoint(textPoint, withAttributes: attribs)
     }
 }
