@@ -18,6 +18,7 @@
 		80645C691B71E92D00918594 /* CategoryPickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80645C681B71E92D00918594 /* CategoryPickerViewController.swift */; };
 		8082C12F1B7468950078D270 /* Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082C12E1B7468950078D270 /* Functions.swift */; };
 		8082C1321B7490190078D270 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8082C1301B7490190078D270 /* DataModel.xcdatamodeld */; };
+		8082C1341B74949D0078D270 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082C1331B74949D0078D270 /* Location.swift */; };
 		80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		80645C681B71E92D00918594 /* CategoryPickerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryPickerViewController.swift; sourceTree = "<group>"; };
 		8082C12E1B7468950078D270 /* Functions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Functions.swift; sourceTree = "<group>"; };
 		8082C1311B7490190078D270 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		8082C1331B74949D0078D270 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -89,6 +91,7 @@
 		804569821B6EEFCD0064035E /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				8082C1331B74949D0078D270 /* Location.swift */,
 				804569851B6EEFCD0064035E /* AppDelegate.swift */,
 				804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */,
 				804569891B6EEFCD0064035E /* SecondViewController.swift */,
@@ -234,6 +237,7 @@
 				8082C1321B7490190078D270 /* DataModel.xcdatamodeld in Sources */,
 				8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */,
 				805772D11B732FBC002C367E /* HudView.swift in Sources */,
+				8082C1341B74949D0078D270 /* Location.swift in Sources */,
 				8082C12F1B7468950078D270 /* Functions.swift in Sources */,
 				804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */,
 				80645C691B71E92D00918594 /* CategoryPickerViewController.swift in Sources */,
