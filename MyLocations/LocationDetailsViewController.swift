@@ -42,12 +42,9 @@ class LocationDetailsViewController: UITableViewController {
         
         hudView.text = "Tagged"
         
-        let delayInSeconds = 0.6
-        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
-        //magic happens here dismisses the screen
-        dispatch_after(when, dispatch_get_main_queue(), { self.dismissViewControllerAnimated(true, completion: nil) })
-//        println("Description '\(descriptionText)' ")
-//        dismissViewControllerAnimated(true, completion: nil)
+        //trailing closure syntax: can put a closure behind the function call if it's the last parameter
+        afterDelay(0.6) { self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     @IBAction func cancel() {
