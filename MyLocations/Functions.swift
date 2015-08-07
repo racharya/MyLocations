@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Dispatch
+import Dispatch // imports Grand Central Dispatch
 
 // free function, not a method inside an object so can be used from anywhere in your code
 
