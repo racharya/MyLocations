@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
-import Dispatch // imports Grand Central Dispatch framework
+
 
 //This is a private global constant that is only visible to this class but lives outside of this class
 // closure implemented to create object and set its properties in one go
