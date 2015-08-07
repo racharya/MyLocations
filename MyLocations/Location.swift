@@ -8,6 +8,7 @@
 
 import Foundation
 import CoreData
+import CoreLocation
 
 class Location: NSManagedObject {
 
@@ -15,7 +16,7 @@ class Location: NSManagedObject {
     @NSManaged var longitude: Double
     @NSManaged var locationDescription: String
     @NSManaged var category: String
-    @NSManaged var placemark: AnyObject
-    @NSManaged var date: NSTimeInterval
+    @NSManaged var placemark: CLPlacemark?
+    @NSManaged var date: NSDate
 
 }
