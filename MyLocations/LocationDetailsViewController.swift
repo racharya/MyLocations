@@ -9,6 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
+import Dispatch // imports Grand Central Dispatch framework
 
 //This is a private global constant that is only visible to this class but lives outside of this class
 // closure implemented to create object and set its properties in one go
@@ -40,6 +41,10 @@ class LocationDetailsViewController: UITableViewController {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
         
         hudView.text = "Tagged"
+        
+        let delayInSeconds = 0.6
+        let when = dispatch_time(DISPATCH_TIME_NOW, Int64(delayInSeconds * Double(NSEC_PER_SEC)))
+        dispatch_after(when, dispatch_get_main_queue(), { self.dismissViewControllerAnimated(true, completion: nil) })
 //        println("Description '\(descriptionText)' ")
 //        dismissViewControllerAnimated(true, completion: nil)
     }
