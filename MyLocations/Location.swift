@@ -11,7 +11,8 @@ import CoreData
 import CoreLocation
 
 class Location: NSManagedObject {
-
+    
+    // the @NSManaged keyword tells the compiler that these resolve at runtime by Core Data
     @NSManaged var lattitude: Double
     @NSManaged var longitude: Double
     @NSManaged var locationDescription: String
