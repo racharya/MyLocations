@@ -74,6 +74,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // UITabBarController and then look at its viewControllers array
         let tabBarController = window!.rootViewController as! UITabBarController
         if let tabBarViewControllers = tabBarController.viewControllers {
+            let navigationController = tabBarViewControllers[1] as! UINavigationController
+            let locationsViewController = navigationController.viewControllers[0] as! LocationsViewController
+            locationsViewController.managedObjectContext = managedObjectContext
+            
             let currentLocationViewController = tabBarViewControllers[0] as! CurrentLocationViewController
             //one we have reference to the CurrentLoationViewController object, we give it the managedObjectContext
             currentLocationViewController.managedObjectContext = managedObjectContext
