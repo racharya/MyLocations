@@ -102,7 +102,35 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
+   
+    func listenForFatalCoreDataNotifications() {
+        //1.  Tell NSNotificationCenter that you want to be notified whenever a MyManaged...FailNotification is posted.
+        // Actual code permored is in the closure
+        NSNotificationCenter.defaultCenter().addObserverForName(MyManagedObjectContextSaveDidFailNotification, object: nil, queue: NSOperationQueue.mainQueue(), usingBlock: { notification in
+            
+            //2. Create a UIAlertController to show the error message
+            let alert = UIAlertController(title: "Internal Error", message: "There was a fatal error in the app and it cannot continue.\n\n" + "Press OK to terminate the app. Sorry for the inconvenience.", preferredStyle: .Alert)
+            
+            //3. Add action for the alert's OK button. Code for handling button press is again a closure
+            let action = UIAlertAction(title: "OK", style: .Default) { _ in
+                let exception = NSException(name: NSInternalInconsistencyException, reason: "Fatal Core Data error", userInfo: nil)
+                exception.raise()
+            }
+            alert.addAction(action)
+            
+            //4. Present the alert
+            self.viewControllerForShowingAlert().presentViewController(alert, animated: true, completion:nil)
+        })
+    }
     
-    
+    //5. To show the alert , need a view controller that is currently visible
+    func viewControllerForShowingAlert() -> UIViewController {
+        let rootViewController = self.window!.rootViewController!
+        if let presentedViewController = rootViewController.presentedViewController {
+            return presentedViewController
+        } else {
+            return rootViewController
+        }
+    }
 }
 
