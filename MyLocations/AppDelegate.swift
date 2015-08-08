@@ -16,19 +16,34 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     // code to load the data model and to connect to an SQLite data store
     lazy var managedObjectContext: NSManagedObjectContext = {
+        
+        //To create an NSManagedObjectContext, need to do several things:
+        //1. NSURL object points to the folder name DataModel.momd == where CoreData model is stored
         if let modelURL = NSBundle.mainBundle().URLForResource("DataModel", withExtension: "momd") {
+            
+            //2. Create an NSManagedObjectModel from the URL. This obj reps the data model during runtime
             if let model = NSManagedObjectModel(contentsOfURL: modelURL) {
+                
+                //3. Create an NSPersistentStoreCoordinator object == is in charge of the SQLite database
                 let coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
+                
+                //4. The app data is stored in SQLite database inside the app's Documents folder, here we create
+                // an NSURL object pointing at that DataStore.sqlite file.
                 let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
                 
                 let documentsDirectory = urls[0] as! NSURL
                 let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
                 
+                //5. Add the SQLite database to the store coordinator
                 var error: NSError?
                 if let store = coordinator.addPersistentStoreWithType(NSSQLiteStoreType, configuration: nil, URL: storeURL, options: nil, error: &error) {
+                    
+                    //6. finally create the NSManagedObjectContext obj and return it
                     let context = NSManagedObjectContext()
                     context.persistentStoreCoordinator = coordinator
                     return context
+                    
+                    //7.if something went wrong, then print an error message and abort the app
                 } else {
                     println("Error adding persistent store at \(storeURL): \(error!)")
                 }
