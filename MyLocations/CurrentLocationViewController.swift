@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation //adds Core Location Framework to the project
+import CoreData
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -30,6 +31,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     var lastGeocodingError: NSError?
     
     var timer: NSTimer?
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
@@ -265,6 +268,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             
             controller.coordinate = location!.coordinate
             controller.placemark = placemark
+            controller.managedObjectContext = managedObjectContext
         }
     }
 }//end of CurrentLocationViewController class
