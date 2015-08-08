@@ -61,8 +61,10 @@ class LocationDetailsViewController: UITableViewController {
         //3. saving the context
         var error: NSError?
         if !managedObjectContext.save(&error) {//&error is output parameter: returns value to the caller
-            println("Error: \(error)")
-            abort()
+//            println("Error: \(error)")
+//            abort() // immediatedly kill the app and return to user springboard
+            fatalCoreDataError(error)
+            return
         }
         
         //trailing closure syntax: can put a closure behind the function call if it's the last parameter
