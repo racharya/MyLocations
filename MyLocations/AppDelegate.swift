@@ -33,6 +33,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 let documentsDirectory = urls[0] as! NSURL
                 let storeURL = documentsDirectory.URLByAppendingPathComponent("DataStore.sqlite")
+                println(storeURL)
                 
                 //5. Add the SQLite database to the store coordinator
                 var error: NSError?
