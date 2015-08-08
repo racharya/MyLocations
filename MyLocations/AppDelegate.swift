@@ -44,6 +44,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        // in order to get a reference to the CurrentLocationViewController you first have to find the 
+        // UITabBarController and then look at its viewControllers array
+        let tabBarController = window!.rootViewController as! UITabBarController
+        if let tabBarViewControllers = tabBarController.viewControllers {
+            let currentLocationViewController = tabBarViewControllers[0] as! CurrentLocationViewController
+            //one we have reference to the CurrentLoationViewController object, we give it the managedObjectContext
+            currentLocationViewController.managedObjectContext = managedObjectContext
+        }
         return true
     }
 
