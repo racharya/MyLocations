@@ -38,11 +38,32 @@ class LocationDetailsViewController: UITableViewController {
     
     var managedObjectContext: NSManagedObjectContext!
     
+    var date = NSDate() // to store current date in the new Location Object
+    
     
     @IBAction func done() {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
         
         hudView.text = "Tagged"
+        
+        //1. create a new location object. Different because its a Core Data managed object
+        // ask NSEntitySescription class to insert a new object for your entity into the managed object context
+        let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+        
+        //2. Once Location object is created, set its properties to what user entered in the screen
+        location.locationDescription = descriptionText
+        location.category = categoryName
+        location.lattitude = coordinate.latitude
+        location.longitude = coordinate.longitude
+        location.date = date
+        location.placemark = placemark
+        
+        //3. saving the context
+        var error: NSError?
+        if !managedObjectContext.save(&error) {//&error is output parameter: returns value to the caller
+            println("Error: \(error)")
+            abort()
+        }
         
         //trailing closure syntax: can put a closure behind the function call if it's the last parameter
         afterDelay(0.6) { self.dismissViewControllerAnimated(true, completion: nil)
@@ -67,7 +88,7 @@ class LocationDetailsViewController: UITableViewController {
         } else {
             addressLabel.text = "No Address Found"
         }
-        dateLabel.text = formatDate(NSDate())
+        dateLabel.text = formatDate(date)
         
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard:"))
         gestureRecognizer.cancelsTouchesInView = false
