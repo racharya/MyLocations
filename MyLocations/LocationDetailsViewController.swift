@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 import CoreLocation
-
+import CoreData
 
 //This is a private global constant that is only visible to this class but lives outside of this class
 // closure implemented to create object and set its properties in one go
@@ -35,6 +35,8 @@ class LocationDetailsViewController: UITableViewController {
     var descriptionText = ""
     
     var categoryName = "No Category" //temporarily stores the chosen category
+    
+    var managedObjectContext: NSManagedObjectContext!
     
     
     @IBAction func done() {
