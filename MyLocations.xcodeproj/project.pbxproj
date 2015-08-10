@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		800C55721B783156004792D1 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C55711B783156004792D1 /* LocationCell.swift */; };
 		801203E11B75EAB600F14EBF /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801203E01B75EAB600F14EBF /* LocationsViewController.swift */; };
 		804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569851B6EEFCD0064035E /* AppDelegate.swift */; };
 		804569881B6EEFCD0064035E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */; };
@@ -34,6 +35,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		800C55711B783156004792D1 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		801203E01B75EAB600F14EBF /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
 		804569801B6EEFCD0064035E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		804569841B6EEFCD0064035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -107,6 +109,7 @@
 				804569891B6EEFCD0064035E /* SecondViewController.swift */,
 				804569831B6EEFCD0064035E /* Supporting Files */,
 				801203E01B75EAB600F14EBF /* LocationsViewController.swift */,
+				800C55711B783156004792D1 /* LocationCell.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -242,6 +245,7 @@
 				8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */,
 				805772D11B732FBC002C367E /* HudView.swift in Sources */,
 				8082C1341B74949D0078D270 /* Location.swift in Sources */,
+				800C55721B783156004792D1 /* LocationCell.swift in Sources */,
 				8082C12F1B7468950078D270 /* Functions.swift in Sources */,
 				804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */,
 				80645C691B71E92D00918594 /* CategoryPickerViewController.swift in Sources */,
