@@ -110,13 +110,13 @@
 				8045698E1B6EEFCD0064035E /* Images.xcassets */,
 				804569901B6EEFCD0064035E /* LaunchScreen.xib */,
 				8082C1331B74949D0078D270 /* Location.swift */,
+				800C55711B783156004792D1 /* LocationCell.swift */,
 				80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */,
+				801203E01B75EAB600F14EBF /* LocationsViewController.swift */,
 				8045698B1B6EEFCD0064035E /* Main.storyboard */,
+				8021B3DA1B794E4700E58C80 /* MapViewController.swift */,
 				804569891B6EEFCD0064035E /* SecondViewController.swift */,
 				804569831B6EEFCD0064035E /* Supporting Files */,
-				801203E01B75EAB600F14EBF /* LocationsViewController.swift */,
-				800C55711B783156004792D1 /* LocationCell.swift */,
-				8021B3DA1B794E4700E58C80 /* MapViewController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";

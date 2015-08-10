@@ -15,6 +15,8 @@ class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
     var managedObjectContext: NSManagedObjectContext!
     
+    var locations = [Location]()
+    
     @IBAction func showUser() {
         let region = MKCoordinateRegionMakeWithDistance(mapView.userLocation.coordinate, 1000, 1000)
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
@@ -22,6 +24,24 @@ class MapViewController: UIViewController {
     
     @IBAction func showLocations() {
         
+    }
+    
+    //fetches the Location obj and shows them on the map when the view loads
+    func updateLocations() {
+        let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
+        let fetchRequest = NSFetchRequest()
+        fetchRequest.entity = entity
+        
+        var error: NSError?
+        let foundObjects = managedObjectContext.executeFetchRequest(fetchRequest, error: &error)
+        
+        if foundObjects == nil {
+            fatalCoreDataError(error)
+            return
+        }
+        mapView.removeAnnotations(locations)// remove the pins for old obj
+        locations = foundObjects as! [Location]
+        mapView.addAnnotations(locations) //add a pin for each location on the map
     }
 }//end of MapViewController class
 
