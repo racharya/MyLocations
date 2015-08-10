@@ -26,7 +26,7 @@ class MapViewController: UIViewController {
         
     }
     
-    //fetches the Location obj and shows them on the map when the view loads
+    //Use NSFetchedR...ller obj to handle all the fetching and automatic change detection
     func updateLocations() {
         let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: managedObjectContext)
         let fetchRequest = NSFetchRequest()
@@ -42,6 +42,12 @@ class MapViewController: UIViewController {
         mapView.removeAnnotations(locations)// remove the pins for old obj
         locations = foundObjects as! [Location]
         mapView.addAnnotations(locations) //add a pin for each location on the map
+    }
+    
+   //fetches the Location obj and shows them on the map when the view loads
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        updateLocations()
     }
 }//end of MapViewController class
 
