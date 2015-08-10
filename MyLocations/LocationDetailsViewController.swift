@@ -39,7 +39,19 @@ class LocationDetailsViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext!
     
     var date = NSDate() // to store current date in the new Location Object
-    var locationToEdit: Location?
+    
+    var locationToEdit: Location? {
+        //didSet is called before viewDidLoad()
+        didSet { // taking the opportunity to fill in the view controller's instance variable with the Location object's values
+            if let location = locationToEdit {
+                descriptionText = location.locationDescription
+                categoryName = location.category
+                date = location.date
+                coordinate = CLLocationCoordinate2DMake(location.lattitude, location.longitude)
+                placemark = location.placemark
+            }
+        }
+    }
     
     
     @IBAction func done() {
