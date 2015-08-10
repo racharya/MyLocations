@@ -58,4 +58,17 @@ class LocationsViewController: UITableViewController {
         //5. if no error, assign the contents of the foundObjects array to the locations inst. var
         locations = foundObjects as! [Location]
     }
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditLocation" {
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! LocationDetailsViewController
+            controller.managedObjectContext = managedObjectContext
+            
+            if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
+                let location = locations[indexPath.row]
+                controller.locationToEdit = location 
+            }
+        }
+    }
 }
