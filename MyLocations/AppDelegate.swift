@@ -78,6 +78,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let locationsViewController = navigationController.viewControllers[0] as! LocationsViewController
             locationsViewController.managedObjectContext = managedObjectContext
             
+            let forceTheViewToLoad = locationsViewController.view
+            
             let currentLocationViewController = tabBarViewControllers[0] as! CurrentLocationViewController
             //one we have reference to the CurrentLoationViewController object, we give it the managedObjectContext
             currentLocationViewController.managedObjectContext = managedObjectContext
