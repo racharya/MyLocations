@@ -9,8 +9,9 @@
 import Foundation
 import CoreData
 import CoreLocation
+import MapKit
 
-class Location: NSManagedObject {
+class Location: NSManagedObject, MKAnnotation {
     
     // the @NSManaged keyword tells the compiler that these resolve at runtime by Core Data
     @NSManaged var lattitude: Double
@@ -20,4 +21,22 @@ class Location: NSManagedObject {
     @NSManaged var placemark: CLPlacemark?
     @NSManaged var date: NSDate
 
-}
+    /* Conforming to MKAnnotation protocol */
+    // all of the following variables are read-only computed properties : don't store a value in mem location
+    var coordinate: CLLocationCoordinate2D {
+        return CLLocationCoordinate2DMake(lattitude, longitude)
+    }
+    
+    var title: String! {
+        if locationDescription.isEmpty {
+            return "(No Description)"
+        } else {
+            return locationDescription
+        }
+    }
+    
+    var subtitle: String {
+        return category
+    }
+    /* end of MKAnnotation protocol */
+}// end of Location class
