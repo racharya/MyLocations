@@ -71,4 +71,7 @@ class LocationsViewController: UITableViewController {
             }
         }
     }
+    deinit {
+        fetchedResultsController.delegate = nil
+    }
 }
