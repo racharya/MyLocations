@@ -39,6 +39,7 @@ class LocationDetailsViewController: UITableViewController {
     var managedObjectContext: NSManagedObjectContext!
     
     var date = NSDate() // to store current date in the new Location Object
+    var locationToEdit: Location?
     
     
     @IBAction func done() {
@@ -78,6 +79,11 @@ class LocationDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // checks whether locationToEdit is set,if not nil we are editing an existing Location Obj
+        if let location = locationToEdit {
+            title = "Edit Location" //title of the screen becomes "Edit Location"
+        }
         
         descriptionTextView.text = descriptionText
         categoryLabel.text = categoryName
