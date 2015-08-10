@@ -63,14 +63,11 @@ class LocationDetailsViewController: UITableViewController {
             location = temp
         } else {// asking Core Data for a new Location of don't already have one
             hudView.text = "Tagged"
+            //1. create a new location object. Different because its a Core Data managed object
+            // ask NSEntitySescription class to insert a new object for your entity into the managed object context
             location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
         }
-        location.locationDescription = descriptionText
-        
-        //1. create a new location object. Different because its a Core Data managed object
-        // ask NSEntitySescription class to insert a new object for your entity into the managed object context
-        let location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
-        
+         
         //2. Once Location object is created, set its properties to what user entered in the screen
         location.locationDescription = descriptionText
         location.category = categoryName
