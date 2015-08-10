@@ -51,6 +51,8 @@ class LocationsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         performFetch()//still perform initial fetch here
+        //Puts an Edit button item in the navigation bar that triggers a mode to let you delete rows
+        navigationItem.rightBarButtonItem = editButtonItem()
         
     }
     
