@@ -78,6 +78,20 @@ class LocationsViewController: UITableViewController {
     deinit {
         fetchedResultsController.delegate = nil
     }
+    
+    // enabling swipe-to-delete
+    // gets the location obj from the selected row and then tells the context to delete that object
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        if editingStyle == .Delete {
+            let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
+            managedObjectContext.deleteObject(location)
+            
+            var error: NSError?
+            if !managedObjectContext.save(&error) {
+                fatalCoreDataError(error)
+            }
+        }
+    }
 }// end of LocationsViewController class
 
 //Implementing delegate methods for NSFetchedResultsController
