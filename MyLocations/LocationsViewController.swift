@@ -33,7 +33,7 @@ class LocationsViewController: UITableViewController {
         
         fetchedResultsController.delegate = self
         return fetchedResultsController
-    }()
+        }()
     //MARK: - UITableViewDataSource
     //Simply ask fetched results controller for the number of rows and return it
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -48,7 +48,7 @@ class LocationsViewController: UITableViewController {
         //with index-paths
         let location = fetchedResultsController.objectAtIndexPath(indexPath) as! Location
         cell.configureForLocation(location)
-       
+        
         return cell
     }
     
@@ -98,6 +98,18 @@ class LocationsViewController: UITableViewController {
             }
         }
     }
+    
+    //Since we are adding sections in TableView, hence implementing table view's additional methods
+    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return fetchedResultsController.sections!.count
+    }
+    //ask fetcher obj for list of sections and then look inside that list to find out about no of sections and their names
+    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        let sectionInfo = fetchedResultsController.sections![section] as! NSFetchedResultsSectionInfo
+        
+        return sectionInfo.name
+    }// end of methods for adding sections
+    
 }// end of LocationsViewController class
 
 //Implementing delegate methods for NSFetchedResultsController
@@ -132,7 +144,7 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
-       
+        
         switch type {
         case .Insert:
             println("*** NSFetchedResultsChangeInsert (section)")
@@ -150,8 +162,8 @@ extension LocationsViewController: NSFetchedResultsControllerDelegate {
     }
     
     func controllerDidChangeContent(controller: NSFetchedResultsController) {
-                println("*** controllerDidChangeContent")
-                tableView.endUpdates()
+        println("*** controllerDidChangeContent")
+        tableView.endUpdates()
         
     }
     
