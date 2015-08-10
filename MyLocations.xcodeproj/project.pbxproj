@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		800C55721B783156004792D1 /* LocationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 800C55711B783156004792D1 /* LocationCell.swift */; };
 		801203E11B75EAB600F14EBF /* LocationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 801203E01B75EAB600F14EBF /* LocationsViewController.swift */; };
+		8021B3D91B794C5600E58C80 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8021B3D81B794C5600E58C80 /* MapKit.framework */; };
 		804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569851B6EEFCD0064035E /* AppDelegate.swift */; };
 		804569881B6EEFCD0064035E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */; };
 		8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569891B6EEFCD0064035E /* SecondViewController.swift */; };
@@ -37,6 +38,7 @@
 /* Begin PBXFileReference section */
 		800C55711B783156004792D1 /* LocationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationCell.swift; sourceTree = "<group>"; };
 		801203E01B75EAB600F14EBF /* LocationsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationsViewController.swift; sourceTree = "<group>"; };
+		8021B3D81B794C5600E58C80 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		804569801B6EEFCD0064035E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		804569841B6EEFCD0064035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		804569851B6EEFCD0064035E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8021B3D91B794C5600E58C80 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -77,6 +80,7 @@
 		804569771B6EEFCD0064035E = {
 			isa = PBXGroup;
 			children = (
+				8021B3D81B794C5600E58C80 /* MapKit.framework */,
 				804569821B6EEFCD0064035E /* MyLocations */,
 				8045699A1B6EEFCD0064035E /* MyLocationsTests */,
 				804569811B6EEFCD0064035E /* Products */,
