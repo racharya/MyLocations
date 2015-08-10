@@ -57,7 +57,15 @@ class LocationDetailsViewController: UITableViewController {
     @IBAction func done() {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
         
-        hudView.text = "Tagged"
+        var location: Location
+        if let temp = locationToEdit {
+            hudView.text = "Updated"
+            location = temp
+        } else {// asking Core Data for a new Location of don't already have one
+            hudView.text = "Tagged"
+            location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+        }
+        location.locationDescription = descriptionText
         
         //1. create a new location object. Different because its a Core Data managed object
         // ask NSEntitySescription class to insert a new object for your entity into the managed object context
