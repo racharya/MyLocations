@@ -19,13 +19,17 @@ class LocationsViewController: UITableViewController {
         let fetchRequest = NSFetchRequest()
         let entity = NSEntityDescription.entityForName("Location", inManagedObjectContext: self.managedObjectContext)
         fetchRequest.entity = entity
-        let sortDescriptor = NSSortDescriptor(key: "date", ascending: true)
+        //first sorts by category
+        let sortDescriptor1 = NSSortDescriptor(key: "category", ascending: true)
+        //and inside each of the category groups it sorts by date
+        let sortDescriptor2 = NSSortDescriptor(key: "date",ascending:true)
         
-        fetchRequest.sortDescriptors = [sortDescriptor]
+        fetchRequest.sortDescriptors = [sortDescriptor1, sortDescriptor2]
         fetchRequest.fetchBatchSize = 20 //how many objects are fetched at a time
         
         //once fetch request is set up, create the star of the show
-        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,managedObjectContext:self.managedObjectContext, sectionNameKeyPath: nil, cacheName: "Locations")
+        //fetch results controller will now group the search results based on the value of the category attribute
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest,managedObjectContext:self.managedObjectContext, sectionNameKeyPath:"category", cacheName: "Locations")
         
         fetchedResultsController.delegate = self
         return fetchedResultsController
