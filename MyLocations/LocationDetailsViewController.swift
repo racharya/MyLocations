@@ -170,6 +170,7 @@ class LocationDetailsViewController: UITableViewController {
         } else if indexPath.section == 1 && indexPath.row == 0 {
             //takePhotoWithCamera() //Enable when using real device
             //choosePhotoFromLibrary()
+            tableView.deselectRowAtIndexPath(indexPath, animated: true)
             pickPhoto()
         }
     } // End of UITableViewDelegate
