@@ -247,6 +247,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     //checks if camera is present, if not then choose photo from libaray
     func pickPhoto() {
         if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        //if true || UIImagePickerController.isSourceTypeAvailable(.Camera){ //to test on simulator
         showPhotoMenu()
     } else {
         choosePhotoFromLibrary()
