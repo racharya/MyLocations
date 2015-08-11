@@ -168,7 +168,8 @@ class LocationDetailsViewController: UITableViewController {
         if indexPath.section == 0 && indexPath.row == 0 {
             descriptionTextView.becomeFirstResponder()
         } else if indexPath.section == 1 && indexPath.row == 0 {
-            takePhotoWithCamera()
+            //takePhotoWithCamera() //Enable when using real device
+            choosePhotoFromLibrary()
         }
     } // End of UITableViewDelegate
     
@@ -231,4 +232,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         dismissViewControllerAnimated(true, completion: nil)
     }//end of delegate methods
+    
+    //use photo library for images
+    func choosePhotoFromLibrary() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .PhotoLibrary
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
 }// end of extension
