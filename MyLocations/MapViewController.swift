@@ -106,7 +106,7 @@ extension MapViewController: MKMapViewDelegate {
                 //2. Ask map view to reuse an annotation view object, if no recyclable then create a new one
                 let identifier = "Location"
                 var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
-                if annotation == nil {
+                if annotationView == nil {
                         annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
                         //3. sets some properties to configure the look and feel of the annotation view
                         annotationView.enabled = true
