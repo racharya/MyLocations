@@ -67,7 +67,7 @@ class LocationDetailsViewController: UITableViewController {
             // ask NSEntitySescription class to insert a new object for your entity into the managed object context
             location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
         }
-         
+        
         //2. Once Location object is created, set its properties to what user entered in the screen
         location.locationDescription = descriptionText
         location.category = categoryName
@@ -79,8 +79,8 @@ class LocationDetailsViewController: UITableViewController {
         //3. saving the context
         var error: NSError?
         if !managedObjectContext.save(&error) {//&error is output parameter: returns value to the caller
-//            println("Error: \(error)")
-//            abort() // immediatedly kill the app and return to user springboard
+            //            println("Error: \(error)")
+            //            abort() // immediatedly kill the app and return to user springboard
             fatalCoreDataError(error)
             return
         }
@@ -123,8 +123,8 @@ class LocationDetailsViewController: UITableViewController {
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
         return
             "\(placemark.subThoroughfare) \(placemark.thoroughfare), " +
-            "\(placemark.locality), " +
-            "\(placemark.administrativeArea) \(placemark.postalCode)," +
+                "\(placemark.locality), " +
+                "\(placemark.administrativeArea) \(placemark.postalCode)," +
         "\(placemark.country)"
     }
     
@@ -137,20 +137,20 @@ class LocationDetailsViewController: UITableViewController {
     //called by table view when it loads its cells
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 && indexPath.row == 0 {
-        return 88
-    } else if indexPath.section == 2 && indexPath.row == 2 {
-        //1. changes width of label to 155 points less then width of the screen and height is set at 10000
-        addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115, height: 10000)
-        //2. resizing to fit after word wrap, removes extra spaces
-        addressLabel.sizeToFit()
-        
-        //3. placing label against  the right edge of the screen  with a 15 point margin between them
-        addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width-15
-        
-        //4. adding 10 points margin at top and bottom each and then calculating full height of the cell
-        return addressLabel.frame.size.height + 20
-    } else {
-        return 44
+            return 88
+        } else if indexPath.section == 2 && indexPath.row == 2 {
+            //1. changes width of label to 155 points less then width of the screen and height is set at 10000
+            addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115, height: 10000)
+            //2. resizing to fit after word wrap, removes extra spaces
+            addressLabel.sizeToFit()
+            
+            //3. placing label against  the right edge of the screen  with a 15 point margin between them
+            addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width-15
+            
+            //4. adding 10 points margin at top and bottom each and then calculating full height of the cell
+            return addressLabel.frame.size.height + 20
+        } else {
+            return 44
         }
     }
     
@@ -180,7 +180,7 @@ class LocationDetailsViewController: UITableViewController {
             controller.selectedCategoryName = categoryName
         }
     }
-   // unwind action method for segue
+    // unwind action method for segue
     @IBAction func categoryPickerDidPickCategory(segue: UIStoryboardSegue) {
         let controller = segue.sourceViewController as! CategoryPickerViewController
         categoryName = controller.selectedCategoryName
@@ -206,8 +206,8 @@ class LocationDetailsViewController: UITableViewController {
 
 extension LocationDetailsViewController: UITextViewDelegate {
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-    descriptionText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
-    return true
+        descriptionText = (textView.text as NSString).stringByReplacingCharactersInRange(range, withString: text)
+        return true
     }
     
     func textViewDidEndEditing(textView: UITextView) {
@@ -246,8 +246,8 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     //checks if camera is present, if not then choose photo from libaray
     func pickPhoto() {
-        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
-        //if true || UIImagePickerController.isSourceTypeAvailable(.Camera){ //to test on simulator
+        //if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        if true || UIImagePickerController.isSourceTypeAvailable(.Camera){ //to test on simulator
         showPhotoMenu()
     } else {
         choosePhotoFromLibrary()
@@ -255,15 +255,18 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     }
     
     //shows a action sheet to choose between camera or/and photo library
+    
     func showPhotoMenu() {
-            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
-            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
-            alertController.addAction(cancelAction)
-            let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: nil)
-            alertController.addAction(takePhotoAction)
-            let chooseFromLibraryAction = UIAlertAction(title: "Choose From Library", style: .Default, handler: nil)
-            alertController.addAction(chooseFromLibraryAction)
-            presentViewController(alertController, animated: true, completion: nil)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+        alertController.addAction(cancelAction)
+        // if handler is nil, tapping it doesnot do anything
+        let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: {_ in self.takePhotoWithCamera() })
+        alertController.addAction(takePhotoAction)
+        // if handler is nil, tapping it doesnot do anything
+        let chooseFromLibraryAction = UIAlertAction(title: "Choose From Library", style: .Default, handler: {_ in self.choosePhotoFromLibrary() })
+        alertController.addAction(chooseFromLibraryAction)
+        presentViewController(alertController, animated: true, completion: nil)
     }
     
 }// end of extension
