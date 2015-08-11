@@ -377,6 +377,9 @@
                                         </barButtonItem>
                                     </navigationItem>
                                 </items>
+                                <connections>
+                                    <outlet property="delegate" destination="2VX-I0-lpO" id="oUq-AO-5oy"/>
+                                </connections>
                             </navigationBar>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -497,6 +500,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jo3-JT-Cu2"/>
+        <segue reference="LSV-YY-PX3"/>
     </inferredMetricsTieBreakers>
 </document>
