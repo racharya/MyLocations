@@ -53,6 +53,9 @@ class LocationDetailsViewController: UITableViewController {
         }
     }
     
+    @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var addPhotoLabel: UILabel!
+    
     
     @IBAction func done() {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
