@@ -92,8 +92,24 @@ class MapViewController: UIViewController {
         return mapView.regionThatFits(region)
     }
     
+    //sending along the button obj as the sender so we can read its tag property in prepareForSeque()
     func showLocationDetails(sender: UIButton){
-                    
+         performSegueWithIdentifier("EditLocation", sender: sender)
+    }
+    
+    //get the location obj to edit from the locations array, using the tag property of the sender
+    //button as the index in the array
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.identifier == "EditLocation" {
+        let navigationController = segue.destinationViewController as! UINavigationController
+        let controller = navigationController.topViewController as! LocationDetailsViewController
+        
+        controller.managedObjectContext = managedObjectContext
+        
+        let button = sender as! UIButton
+        let location = locations[button.tag]
+        controller.locationToEdit = location
+        }
     }
 }//end of MapViewController class
 
