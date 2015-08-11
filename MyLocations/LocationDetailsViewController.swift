@@ -210,3 +210,14 @@ extension LocationDetailsViewController: UITextViewDelegate {
         descriptionText = textView.text
     }
 }
+
+extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    //create a UIImagePickerController instance, set its properties to configure the picker, set its delegate, and then present it
+    func takePhotoWithCamera() {
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .Camera
+        imagePicker.delegate = self
+        imagePicker.allowsEditing = true
+        presentViewController(imagePicker, animated: true, completion: nil)
+    }
+}
