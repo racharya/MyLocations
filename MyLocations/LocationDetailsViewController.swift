@@ -169,7 +169,8 @@ class LocationDetailsViewController: UITableViewController {
             descriptionTextView.becomeFirstResponder()
         } else if indexPath.section == 1 && indexPath.row == 0 {
             //takePhotoWithCamera() //Enable when using real device
-            choosePhotoFromLibrary()
+            //choosePhotoFromLibrary()
+            pickPhoto()
         }
     } // End of UITableViewDelegate
     
@@ -241,4 +242,27 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    
+    //checks if camera is present, if not then choose photo from libaray
+    func pickPhoto() {
+        if UIImagePickerController.isSourceTypeAvailable(.Camera) {
+        showPhotoMenu()
+    } else {
+        choosePhotoFromLibrary()
+        }
+    }
+    
+    //shows a action sheet to choose between camera or/and photo library
+    func showPhotoMenu() {
+            let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .ActionSheet)
+            let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel, handler: nil)
+            alertController.addAction(cancelAction)
+            let takePhotoAction = UIAlertAction(title: "Take Photo", style: .Default, handler: nil)
+            alertController.addAction(takePhotoAction)
+            let chooseFromLibraryAction = UIAlertAction(title: "Choose From Library", style: .Default, handler: nil)
+            alertController.addAction(chooseFromLibraryAction)
+            presentViewController(alertController, animated: true, completion: nil)
+    }
+    
 }// end of extension
