@@ -22,7 +22,11 @@ class MapViewController: UIViewController {
         mapView.setRegion(mapView.regionThatFits(region), animated: true)
     }
     
+    //calls regionForAnnotations() to calculate reasonable region that fits all the 
+    //Location objs and then sets that region on the map view
     @IBAction func showLocations() {
+        let region = regionForAnnotations(locations)
+        mapView.setRegion(region, animated: true)
         
     }
     
@@ -48,6 +52,10 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLocations()
+        //show user's location by default the first time
+        if !locations.isEmpty {
+            showLocations()
+        }
     }
     
     func regionForAnnotations(annotations: [MKAnnotation]) -> MKCoordinateRegion {
