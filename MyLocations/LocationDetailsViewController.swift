@@ -56,6 +56,7 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var addPhotoLabel: UILabel!
     
+    var image : UIImage?
     
     @IBAction func done() {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
@@ -206,6 +207,14 @@ class LocationDetailsViewController: UITableViewController {
         super.viewWillLayoutSubviews()
         descriptionTextView.frame.size.width = view.frame.size.width - 30 // 15 points margin on left and right side
     }
+    
+    //puts image into the image view, hides add photo label to avoid overlap the image view
+    func showImage(image: UIImage) {
+        imageView.image = image
+        imageView.hidden = false
+        imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
+        addPhotoLabel.hidden = true
+    }
 }//end of LocationDetailsViewController class
 
 extension LocationDetailsViewController: UITextViewDelegate {
@@ -228,10 +237,14 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-    //delegate methods
-    //currently delegate methods simply remove the image picker from the screen
+    //delegate method
+    //this gets called when user has selected a photo in the image picker
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[NSObject: AnyObject]) {
-        dismissViewControllerAnimated(true, completion: nil)
+        image = info[UIImagePickerControllerEditedImage] as? UIImage
+        if let image = image {
+            showImage(image)
+        }
+        dismissViewControllerAnimated(true, completion: nil) //simply remove the image picker from the screen
     }
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
