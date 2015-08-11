@@ -220,4 +220,13 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         imagePicker.allowsEditing = true
         presentViewController(imagePicker, animated: true, completion: nil)
     }
-}
+    //delegate methods
+    //currently delegate methods simply remove the image picker from the screen
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info:[NSObject: AnyObject]) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }
+    
+    func imagePickerControllerDidCancel(picker: UIImagePickerController) {
+        dismissViewControllerAnimated(true, completion: nil)
+    }//end of delegate methods
+}// end of extension
