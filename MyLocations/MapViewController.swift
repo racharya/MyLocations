@@ -164,3 +164,10 @@ extension MapViewController: MKMapViewDelegate {
         
                     
 }// end of MKMapViewDelegate
+
+extension MapViewController: UINavigationBarDelegate {
+                //tells navigation bar to extend under the status bar area
+                func positionForBar(bar: UIBarPositioning) -> UIBarPosition {
+                        return .TopAttached
+                }
+}
