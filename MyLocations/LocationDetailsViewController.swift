@@ -142,6 +142,12 @@ class LocationDetailsViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         if indexPath.section == 0 && indexPath.row == 0 {
             return 88
+        } else if indexPath.section == 1 {
+            if imageView.hidden {
+                return 44
+            } else {
+                return 280
+            }
         } else if indexPath.section == 2 && indexPath.row == 2 {
             //1. changes width of label to 155 points less then width of the screen and height is set at 10000
             addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115, height: 10000)
@@ -244,6 +250,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
         if let image = image {
             showImage(image)
         }
+        tableView.reloadData()
         dismissViewControllerAnimated(true, completion: nil) //simply remove the image picker from the screen
     }
     
