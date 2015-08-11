@@ -48,7 +48,7 @@ class MapViewController: UIViewController {
         mapView.addAnnotations(locations) //add a pin for each location on the map
     }
     
-   //fetches the Location obj and shows them on the map when the view loads
+    //fetches the Location obj and shows them on the map when the view loads
     override func viewDidLoad() {
         super.viewDidLoad()
         updateLocations()
@@ -81,7 +81,7 @@ class MapViewController: UIViewController {
             }
             
             let center = CLLocationCoordinate2D( latitude: topLeftCoord.latitude -
-                    (topLeftCoord.latitude - bottomRightCoord.latitude) / 2, longitude: topLeftCoord.longitude -          (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
+                (topLeftCoord.latitude - bottomRightCoord.latitude) / 2, longitude: topLeftCoord.longitude -          (topLeftCoord.longitude - bottomRightCoord.longitude) / 2)
             
             let extraSpace = 1.1
             let span = MKCoordinateSpan(
@@ -89,10 +89,51 @@ class MapViewController: UIViewController {
                 longitudeDelta: abs(topLeftCoord.longitude - bottomRightCoord.longitude) * extraSpace)
             region = MKCoordinateRegion(center: center, span: span)
         }
-    return mapView.regionThatFits(region)
-}
+        return mapView.regionThatFits(region)
+    }
+    
+    func showLocationDetails(sender: UIButton){
+                    
+    }
 }//end of MapViewController class
 
 extension MapViewController: MKMapViewDelegate {
-    
+                    
+    func mapView(mapView: MKMapView!, viewForAnnotation annotation: MKAnnotation!) -> MKAnnotationView! {
+        
+            //1. Determines if annotation is really a Location obj
+            if annotation is Location {
+                //2. Ask map view to reuse an annotation view object, if no recyclable then create a new one
+                let identifier = "Location"
+                var annotationView = mapView.dequeueReusableAnnotationViewWithIdentifier(identifier) as! MKPinAnnotationView!
+                if annotation == nil {
+                        annotationView = MKPinAnnotationView(annotation: annotation, reuseIdentifier: identifier)
+                        //3. sets some properties to configure the look and feel of the annotation view
+                        annotationView.enabled = true
+                        annotationView.canShowCallout = true
+                        annotationView.animatesDrop = false
+                        annotationView.pinColor = .Green
+                        
+                        //4.create new UIButton that looks like a detail disclosure button (blue circled i, or info button).
+                        // Hook up button event to a new showLocationDetails() method and add the button to the 
+                        // annotation view's accessory view
+                        let rightButton = UIButton.buttonWithType(.DetailDisclosure) as! UIButton
+                        rightButton.addTarget(self, action: Selector("showLocationDetails:"), forControlEvents: .TouchUpInside)
+                        annotationView.rightCalloutAccessoryView = rightButton
+                    } else {
+                        annotationView.annotation = annotation
+        }
+        //5. obtain a reference to the detail disclosure button again and sets its tag to the index of location obj in the location array
+        let button = annotationView.rightCalloutAccessoryView as! UIButton
+        if let index = find(locations, annotation as! Location) {
+                            button.tag = index
+        }
+        return annotationView
+        
+            }
+            return nil
+                    }
+                    
+        
+                    
 }// end of MKMapViewDelegate
