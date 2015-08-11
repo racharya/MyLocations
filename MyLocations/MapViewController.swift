@@ -13,7 +13,18 @@ import CoreData
 
 class MapViewController: UIViewController {
     @IBOutlet weak var mapView: MKMapView!
-    var managedObjectContext: NSManagedObjectContext!
+    
+    //once managedObjectContext is given a value(happens in AppDelegate during app start up), the didSet
+    // block tells the NSNotificationCenter to add an observer for the NSManagedObjectContextObjectsDidChangeNotification
+    var managedObjectContext: NSManagedObjectContext! {
+        didSet {
+            NSNotificationCenter.defaultCenter().addObserverForName(NSManagedObjectContextObjectsDidChangeNotification, object: managedObjectContext, queue: NSOperationQueue.mainQueue()) { notification in
+                if self.isViewLoaded() {
+                    self.updateLocations()// fetches all the Location objs again. Throws all olds pins and makes new pins for all newly fetched ones
+                }
+            }
+        }
+    }
     
     var locations = [Location]()
     
