@@ -44,4 +44,17 @@ class Location: NSManagedObject, MKAnnotation {
     var hasPhoto: Bool {
         return photoID != nil
     }
+    
+    //computes full path to the JPEG file for the photo and save thes files inside app's documents directory
+    var photoPath: String {
+        assert(photoID != nil, "No photo ID set")// making sure photoID is not nil
+        let filename = "Photo-\(photoID!.integerValue).jpg"
+        return applicationDocumentsDirectory.stringByAppendingPathComponent(filename)
+        
+    }
+    
+    //returns UIImage obj by loading the image file. need this later to show the photos for existing Location objs
+    var photoImage: UIImage? {
+        return UIImage(contentsOfFile: photoPath)
+    }
 }// end of Location class
