@@ -273,7 +273,7 @@ extension LocationDetailsViewController: UITextViewDelegate {
 extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     //create a UIImagePickerController instance, set its properties to configure the picker, set its delegate, and then present it
     func takePhotoWithCamera() {
-        let imagePicker = UIImagePickerController()
+        let imagePicker = MyImagePickerController()
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -296,7 +296,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     
     //use photo library for images
     func choosePhotoFromLibrary() {
-        let imagePicker = UIImagePickerController()
+        let imagePicker = MyImagePickerController()
         imagePicker.sourceType = .PhotoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
