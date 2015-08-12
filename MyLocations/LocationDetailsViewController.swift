@@ -124,8 +124,7 @@ class LocationDetailsViewController: UITableViewController {
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
         listenForBackgroundNotification()
-        listenForB
-        var observer: AnyObject!//holds reference to the observer
+    
     }
     
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
@@ -215,14 +214,18 @@ class LocationDetailsViewController: UITableViewController {
     }
     
     //Adds observer for UIApplication...Notification. When notification is received, NSNofitication will call the closure
+    //capturing  list for the closure using [weak self] -> tells closure that variable self will be captured
+    //captured self is weak so closure no longer keeps view controlelr alive.
     func listenForBackgroundNotification() {
         
-        observer = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { notification in
-            if self.presentedViewController != nil {
-                self.dismissViewControllerAnimated(false, completion: nil)
+        observer = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { [weak self] notification in
+            if let strongSelf = self {
+                if strongSelf.presentedViewController != nil {
+                    strongSelf.dismissViewControllerAnimated(false, completion: nil)
+                }
+                strongSelf.descriptionTextView.resignFirstResponder()
             }
-            self.descriptionTextView.resignFirstResponder()
-    }
+        }
     }
     
     //making sure that the view controller does get destroyed when Tag/Edit location screen is close
