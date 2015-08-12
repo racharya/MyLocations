@@ -62,5 +62,17 @@ class LocationCell: UITableViewCell {
         photoImageView.layer.cornerRadius = photoImageView.bounds.size.width / 2
         photoImageView.clipsToBounds = true
         separatorInset = UIEdgeInsets(top: 0, left: 82, bottom: 0, right: 0)
+        
+        descriptionLabel.backgroundColor = UIColor.blueColor()
+        addressLabel.backgroundColor = UIColor.redColor()
     }
-}
+    
+    //Resize the frames of the labels to take up all the remaining space in the cell
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        if let sv = superview {
+            descriptionLabel.frame.size.width = sv.frame.size.width - descriptionLabel.frame.origin.x - 10
+            addressLabel.frame.size.width = sv.frame.size.width - addressLabel.frame.origin.x - 10
+        }
+    }
+}//end of LocationCell.swift
