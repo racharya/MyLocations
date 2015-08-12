@@ -59,6 +59,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             showLocationServicesDeniedAlert()
             return
         }
+        //removes logo before starting location manager
+        if logoVisible {
+            hideLogoView()
+        }
         if updatingLocation {
             startLocationManager()
         } else {
@@ -324,6 +328,13 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         containerView.hidden = true
         view.addSubview(logoButton)
                 }
+    }
+    
+    // counterpart of showLogoView
+    func hideLogoView() {
+        logoVisible = false
+        containerView.hidden = false
+        logoButton.removeFromSuperview()
     }
 }//end of CurrentLocationViewController class
 
