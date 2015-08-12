@@ -257,13 +257,28 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
+    //adding spinner to show an activity 
     func configureGetButton() {
+        let spinnerTag = 1000
+                
         if updatingLocation {
             getButton.setTitle("Stop", forState: .Normal)
             
-        } else {
-            getButton.setTitle("Get My Location", forState: .Normal)
-        }
+        if view.viewWithTag(spinnerTag) == nil {
+            let spinner = UIActivityIndicatorView(activityIndicatorStyle: .White)
+            spinner.center = messageLabel.center
+            spinner.center.y += spinner.bounds.size.height/2 + 15
+            spinner.startAnimating()
+            spinner.tag = spinnerTag
+            containerView.addSubview(spinner)
+                }
+            } else {
+                getButton.setTitle("Get My Location", forState: .Normal)
+            
+            if let spinner = view.viewWithTag(spinnerTag) {
+                spinner.removeFromSuperview()
+            }
+                }
     }
     
     func stringFromPlacemark(placemark : CLPlacemark) -> String {
