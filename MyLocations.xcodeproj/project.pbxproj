@@ -28,6 +28,7 @@
 		8082C1321B7490190078D270 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 8082C1301B7490190078D270 /* DataModel.xcdatamodeld */; };
 		8082C1341B74949D0078D270 /* Location.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8082C1331B74949D0078D270 /* Location.swift */; };
 		80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */; };
+		80D839141B7BF9A300C0DE59 /* Sound.caf in Resources */ = {isa = PBXBuildFile; fileRef = 80D839131B7BF9A300C0DE59 /* Sound.caf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +67,7 @@
 		8082C1311B7490190078D270 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		8082C1331B74949D0078D270 /* Location.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Location.swift; sourceTree = "<group>"; };
 		80D42AC51B71B83B007F21CC /* LocationDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationDetailsViewController.swift; sourceTree = "<group>"; };
+		80D839131B7BF9A300C0DE59 /* Sound.caf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Sound.caf; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 		804569821B6EEFCD0064035E /* MyLocations */ = {
 			isa = PBXGroup;
 			children = (
+				80D839131B7BF9A300C0DE59 /* Sound.caf */,
 				804569851B6EEFCD0064035E /* AppDelegate.swift */,
 				80645C681B71E92D00918594 /* CategoryPickerViewController.swift */,
 				804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */,
@@ -240,6 +243,7 @@
 			files = (
 				8045698D1B6EEFCD0064035E /* Main.storyboard in Resources */,
 				804569921B6EEFCD0064035E /* LaunchScreen.xib in Resources */,
+				80D839141B7BF9A300C0DE59 /* Sound.caf in Resources */,
 				8045698F1B6EEFCD0064035E /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
