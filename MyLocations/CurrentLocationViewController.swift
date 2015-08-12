@@ -9,6 +9,7 @@
 import UIKit
 import CoreLocation //adds Core Location Framework to the project
 import CoreData
+import QuartzCore
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -327,14 +328,53 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         logoVisible = true
         containerView.hidden = true
         view.addSubview(logoButton)
-                }
+        }
     }
     
     // counterpart of showLogoView
+    //creates 3 animations 
+    //1) containerView is placed outside the screen and moved to the conter
+    //2) the logo image view slides out of the screen
+    //3) while sliding, rotates around its center
     func hideLogoView() {
-        logoVisible = false
-        containerView.hidden = false
-        logoButton.removeFromSuperview()
+            if !logoVisible { return }
+            
+            logoVisible = false
+            containerView.hidden = false
+            
+            containerView.center.x = view.bounds.size.width * 2
+            containerView.center.y = 40 + containerView.bounds.size.height / 2
+            
+            let centerX = CGRectGetMidX(view.bounds)
+            
+            let panelMover = CABasicAnimation(keyPath: "position")
+            panelMover.removedOnCompletion = false
+            panelMover.fillMode = kCAFillModeForwards
+            panelMover.duration = 0.6
+            panelMover.fromValue = NSValue(CGPoint: containerView.center)
+            panelMover.toValue = NSValue(CGPoint: CGPoint(x: centerX, y: containerView.center.y))
+            panelMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseOut)
+            
+            panelMover.delegate = self
+            containerView.layer.addAnimation(panelMover, forKey: "panelMover")
+            
+            let logoMover = CABasicAnimation(keyPath: "position")
+            logoMover.removedOnCompletion = false
+            logoMover.fillMode = kCAFillModeForwards
+            logoMover.duration = 0.5
+            logoMover.fromValue = NSValue(CGPoint: logoButton.center)
+            logoMover.toValue = NSValue(CGPoint: CGPoint(x: -centerX, y: logoButton.center.y))
+            logoMover.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            logoButton.layer.addAnimation(logoMover, forKey: "logoMover")
+            
+            let logoRotator = CABasicAnimation(keyPath: "transform.rotation.z")
+            logoRotator.removedOnCompletion = false
+            logoRotator.fillMode = kCAFillModeForwards
+            logoRotator.duration = 0.5
+            logoRotator.fromValue = 0.0
+            logoRotator.toValue = -2 * M_PI
+            logoRotator.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseIn)
+            logoButton.layer.addAnimation(logoRotator, forKey: "logoRotator")
     }
 }//end of CurrentLocationViewController class
 
