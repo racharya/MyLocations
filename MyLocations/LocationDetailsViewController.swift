@@ -116,6 +116,10 @@ class LocationDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        //makes only tabel view black, not the cells in them
+        tableView.backgroundColor = UIColor.blackColor()
+        tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
+        tableView.indicatorStyle = .White
         
         // checks whether locationToEdit is set,if not nil we are editing an existing Location Obj
         if let location = locationToEdit {
