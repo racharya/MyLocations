@@ -57,4 +57,13 @@ class Location: NSManagedObject, MKAnnotation {
     var photoImage: UIImage? {
         return UIImage(contentsOfFile: photoPath)
     }
+    
+    //gives a simple integer in NSUserDefaults and update it everytime the app asks for a new ID
+    class func nextPhotoID() -> Int {
+        let userDefaults = NSUserDefaults.standardUserDefaults()
+        let currentID = userDefaults.integerForKey("PhotoID")
+        userDefaults.setInteger(currentID + 1, forKey: "PhotoID")
+        userDefaults.synchronize()
+        return currentID
+    }
 }// end of Location class
