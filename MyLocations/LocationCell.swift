@@ -57,5 +57,10 @@ class LocationCell: UITableViewCell {
         let selectionView = UIView(frame: CGRect.zeroRect)
         selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
         selectedBackgroundView = selectionView
+        
+        //gives the image view rouded corners to the image tumbnails
+        photoImageView.layer.cornerRadius = photoImageView.bounds.size.width / 2
+        photoImageView.clipsToBounds = true
+        separatorInset = UIEdgeInsets(top: 0, left: 82, bottom: 0, right: 0)
     }
 }
