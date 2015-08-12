@@ -420,7 +420,7 @@
         <!--Locations-->
         <scene sceneID="zFJ-RI-x8X">
             <objects>
-                <navigationController id="10h-tV-cQF" sceneMemberID="viewController">
+                <navigationController id="10h-tV-cQF" customClass="MyNavigationController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Locations" image="Locations" id="uXp-VZ-mHX"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="h5X-Oc-zt9">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
@@ -475,10 +475,10 @@
             </objects>
             <point key="canvasLocation" x="2308" y="-1"/>
         </scene>
-        <!--Tab Bar Controller-->
+        <!--My Tab Bar Controller-->
         <scene sceneID="yl2-sM-qoP">
             <objects>
-                <tabBarController id="49e-Tb-3d3" sceneMemberID="viewController">
+                <tabBarController id="49e-Tb-3d3" customClass="MyTabBarController" customModule="MyLocations" customModuleProvider="target" sceneMemberID="viewController">
                     <nil key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" id="W28-zg-YXA">
                         <rect key="frame" x="0.0" y="975" width="768" height="49"/>
