@@ -81,6 +81,20 @@ class LocationDetailsViewController: UITableViewController {
         location.date = date
         location.placemark = placemark
         
+        if let image = image {
+            //1.if adding photo to a photoless location then get new id and assign it to Location's photoID
+            if !location.hasPhoto {
+                location.photoID = Location.nextPhotoID()
+            }
+            //2. converts UIImage into the JEPG format
+            let data = UIImageJPEGRepresentation(image, 0.5)
+            //3. save the NSData obj to the path given by the photoPath property
+            var error: NSError?
+            if !data.writeToFile(location.photoPath, options: .DataWritingAtomic, error: &error) {
+                println("Error writing file: \(error)")
+            }
+        }
+        
         //3. saving the context
         var error: NSError?
         if !managedObjectContext.save(&error) {//&error is output parameter: returns value to the caller
