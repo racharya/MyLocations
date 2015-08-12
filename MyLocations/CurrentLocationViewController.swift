@@ -158,8 +158,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     println("*** Found placemarks: \(placemarks), error: \(error)")
                     self.lastGeocodingError = error
                     if error == nil && !placemarks.isEmpty {
+
                     if self.placemark == nil {
-                    println("FIRST TIME")
                     self.playSoundEffect()
                     }
                         self.placemark = placemarks.last as? CLPlacemark
