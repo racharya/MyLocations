@@ -71,6 +71,7 @@ class LocationDetailsViewController: UITableViewController {
             //1. create a new location object. Different because its a Core Data managed object
             // ask NSEntitySescription class to insert a new object for your entity into the managed object context
             location = NSEntityDescription.insertNewObjectForEntityForName("Location", inManagedObjectContext: managedObjectContext) as! Location
+            location.photoID = nil
         }
         
         //2. Once Location object is created, set its properties to what user entered in the screen
