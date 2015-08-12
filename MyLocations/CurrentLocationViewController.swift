@@ -10,6 +10,7 @@ import UIKit
 import CoreLocation //adds Core Location Framework to the project
 import CoreData
 import QuartzCore
+import AudioToolbox
 
 class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate {
     
@@ -40,6 +41,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var containerView: UIView!
     
     var logoVisible = false
+    
+    var soundID: SystemSoundID = 0
     
     lazy var logoButton: UIButton = {
         let button = UIButton.buttonWithType(.Custom) as! UIButton
@@ -81,6 +84,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         super.viewDidLoad()
         updateLabels()
         configureGetButton()
+        loadSoundEffect("Sound.caf")
         // Do any additional setup after loading the view, typically from a nib.
     }
     
@@ -154,6 +158,10 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                     println("*** Found placemarks: \(placemarks), error: \(error)")
                     self.lastGeocodingError = error
                     if error == nil && !placemarks.isEmpty {
+                    if self.placemark == nil {
+                    println("FIRST TIME")
+                    self.playSoundEffect()
+                    }
                         self.placemark = placemarks.last as? CLPlacemark
                     } else {
                         self.placemark = nil
@@ -257,7 +265,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
     }
     
-    //adding spinner to show an activity 
+    //adding spinner to show an activity
     func configureGetButton() {
         let spinnerTag = 1000
                 
@@ -399,7 +407,32 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             containerView.center.y = 40 + containerView.bounds.size.height / 2
             
             logoButton.layer.removeAllAnimations()
-            logoButton.removeFromSuperview() }
+            logoButton.removeFromSuperview()
+    }
+    
+    // MARK: - Sound Effect
+    //loads sound file and put it into a new sound object
+    func loadSoundEffect(name: String) {
+        if let path = NSBundle.mainBundle().pathForResource(name, ofType: nil) {
+            let fileURL = NSURL.fileURLWithPath(path, isDirectory: false)
+        if fileURL == nil {
+            println("NSURL is nil for path: \(path)")
+            return
+        }
+        let error = AudioServicesCreateSystemSoundID(fileURL, &soundID)
+        if Int(error) != kAudioServicesNoError {
+            println("Error code \(error) loading sound at path: \(path)")
+            return
+        }
+      }
+    }
+    func unloadSoundEffect() {
+        AudioServicesDisposeSystemSoundID(soundID)
+        soundID = 0
+    }
+    func playSoundEffect() {
+        AudioServicesPlaySystemSound(soundID)
+    }
     
 }//end of CurrentLocationViewController class
 
