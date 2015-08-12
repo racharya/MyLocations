@@ -40,7 +40,7 @@ class LocationCell: UITableViewCell {
                 return image.resizedImageWithBounds(CGSize(width: 52, height: 52))
             }
         }
-        return UIImage()
+        return UIImage(named: "No Photo")! // does not return an empty UIImage now
     }
     
     //invoked when UIKit loads the object from the storyboard. Ideal place to customize looks.
