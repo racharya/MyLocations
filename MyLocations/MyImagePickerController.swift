@@ -7,3 +7,11 @@
 //
 
 import Foundation
+import UIKit
+
+//use this class to pick a photo
+class MyImagePickerController: UIImagePickerController {
+    override func preferredStatusBarStyle() -> UIStatusBarStyle {
+    return .LightContent
+    }
+}
