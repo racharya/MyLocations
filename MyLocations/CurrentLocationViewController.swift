@@ -34,6 +34,9 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     
     var managedObjectContext: NSManagedObjectContext!
     
+    @IBOutlet weak var latitudeTextLabel: UILabel!
+    @IBOutlet weak var longitudeTextLabel: UILabel!
+    
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .NotDetermined {
@@ -169,6 +172,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             longitudeLabel.text = String(format:"%.8f", location.coordinate.longitude)
             tagButton.hidden = false
             messageLabel.text = " "
+            latitudeTextLabel.hidden = false
+            longitudeTextLabel.hidden = false
             
             if let placemark = placemark {
                 addressLabel.text = stringFromPlacemark(placemark)
@@ -187,6 +192,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             addressLabel.text = " "
             tagButton.hidden = true
             
+            
             var statusMessage: String
             if let error = lastLocationError {
                 if error.domain == kCLErrorDomain && error.code == CLError.Denied.rawValue {
@@ -203,6 +209,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
                 statusMessage = "Tap 'Get My Location' to Start"
             }
             messageLabel.text = statusMessage
+            latitudeTextLabel.hidden = true
+            longitudeTextLabel.hidden = true
         }
     }
     
