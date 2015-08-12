@@ -120,6 +120,12 @@ class LocationDetailsViewController: UITableViewController {
         // checks whether locationToEdit is set,if not nil we are editing an existing Location Obj
         if let location = locationToEdit {
             title = "Edit Location" //title of the screen becomes "Edit Location"
+            //if currently editing location has a photo, calls showImage() to display it in the photo cell
+            if location.hasPhoto {
+                if let image = location.photoImage {
+                    showImage(image)
+                }
+            }
         }
         
         descriptionTextView.text = descriptionText
