@@ -52,5 +52,10 @@ class LocationCell: UITableViewCell {
         descriptionLabel.highlightedTextColor = descriptionLabel.textColor
         addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
         addressLabel.highlightedTextColor = addressLabel.textColor
+        
+        //get rid of cell (in Locations tab) lighting up in bright color when tapped
+        let selectionView = UIView(frame: CGRect.zeroRect)
+        selectionView.backgroundColor = UIColor(white: 1.0, alpha: 0.2)
+        selectedBackgroundView = selectionView
     }
 }
