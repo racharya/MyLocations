@@ -38,6 +38,17 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     @IBOutlet weak var longitudeTextLabel: UILabel!
     @IBOutlet weak var containerView: UIView!
     
+    var logoVisible = false
+    
+    lazy var logoButton: UIButton = {
+        let button = UIButton.buttonWithType(.Custom) as! UIButton
+        button.setBackgroundImage(UIImage(named: "Logo"), forState: .Normal)
+        button.sizeToFit()
+        button.addTarget(self, action: Selector("getLocation"),forControlEvents: .TouchUpInside)
+        button.center.x = CGRectGetMidX(self.view.bounds)
+        button.center.y = 220
+        return button }()
+    
     @IBAction func getLocation() {
         let authStatus = CLLocationManager.authorizationStatus()
         if authStatus == .NotDetermined {
@@ -207,7 +218,8 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             } else if updatingLocation {
                 statusMessage = "Searching..."
             } else {
-                statusMessage = "Tap 'Get My Location' to Start"
+                statusMessage = ""
+                showLogoView()
             }
             messageLabel.text = statusMessage
             latitudeTextLabel.hidden = true
@@ -303,6 +315,15 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             result += text
         }
         return result
+    }
+    //MARK: - Logo View
+    //hides the container view so the labels disappear and puts logoButton obj on the screen
+    func showLogoView() {
+        if !logoVisible {
+        logoVisible = true
+        containerView.hidden = true
+        view.addSubview(logoButton)
+                }
     }
 }//end of CurrentLocationViewController class
 
