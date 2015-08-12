@@ -243,39 +243,22 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     func stringFromPlacemark(placemark : CLPlacemark) -> String {
         //1.
         var line1 = ""
+        line1 = addText(placemark.subThoroughfare, toLine: line1, withSeparator: "")
+        line1 = addText(placemark.thoroughfare, toLine: line1, withSeparator: " ")
         
-        //2.
-        if placemark.subThoroughfare != nil {
-            line1 += placemark.subThoroughfare
-        }
-        
-        //3.
-        if placemark.thoroughfare != nil {
-            if !line1.isEmpty {
-                line1 += " "
-            }
-            line1 += placemark.thoroughfare
-        }
-        //4.
         var line2 = ""
-        if placemark.locality != nil {
-            line2 += placemark.locality
+        line2 = addText(placemark.locality, toLine: line2, withSeparator: "")
+        line2 = addText(placemark.administrativeArea, toLine: line2, withSeparator: " ")
+        line2 = addText(placemark.postalCode, toLine: line2, withSeparator: " ")
+        
+        //aligning text at the top
+        if line1.isEmpty {
+            return line2 + "\n "
+        } else {
+            return line1 + "\n" + line2
         }
-        if placemark.administrativeArea != nil {
-            if !line2.isEmpty {
-                line2 += " "
-            }
-            line2 += placemark.administrativeArea
-        }
-        if placemark.postalCode != nil {
-            if !line2.isEmpty {
-                line2 += " "
-            }
-            line2 += placemark.postalCode
-        }
-        //5.
-        return line1 + "\n" + line2
     }
+        
     
     // called after 1 min whether valid location or not
     func didTimeOut() {
@@ -300,6 +283,17 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
             controller.placemark = placemark
             controller.managedObjectContext = managedObjectContext
         }
+    }
+    
+    func addText(text: String?, toLine line: String, withSeparator separator: String) -> String {
+        var result = line
+        if let text = text {
+            if !line.isEmpty {
+                result += separator
+            }
+            result += text
+        }
+        return result
     }
 }//end of CurrentLocationViewController class
 
