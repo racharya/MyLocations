@@ -272,6 +272,9 @@ extension LocationDetailsViewController: UITextViewDelegate {
     func textViewDidEndEditing(textView: UITextView) {
         descriptionText = textView.text
     }
+    
+
+    
 }
 
 extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
