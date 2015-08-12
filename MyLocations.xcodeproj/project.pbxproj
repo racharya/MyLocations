@@ -15,7 +15,6 @@
 		802482D91B7B1E8700505ADA /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802482D81B7B1E8700505ADA /* String+AddText.swift */; };
 		804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569851B6EEFCD0064035E /* AppDelegate.swift */; };
 		804569881B6EEFCD0064035E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */; };
-		8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569891B6EEFCD0064035E /* SecondViewController.swift */; };
 		8045698D1B6EEFCD0064035E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8045698B1B6EEFCD0064035E /* Main.storyboard */; };
 		8045698F1B6EEFCD0064035E /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8045698E1B6EEFCD0064035E /* Images.xcassets */; };
 		804569921B6EEFCD0064035E /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 804569901B6EEFCD0064035E /* LaunchScreen.xib */; };
@@ -49,7 +48,6 @@
 		804569841B6EEFCD0064035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		804569851B6EEFCD0064035E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrentLocationViewController.swift; sourceTree = "<group>"; };
-		804569891B6EEFCD0064035E /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		8045698C1B6EEFCD0064035E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8045698E1B6EEFCD0064035E /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		804569911B6EEFCD0064035E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
@@ -119,7 +117,6 @@
 				801203E01B75EAB600F14EBF /* LocationsViewController.swift */,
 				8045698B1B6EEFCD0064035E /* Main.storyboard */,
 				8021B3DA1B794E4700E58C80 /* MapViewController.swift */,
-				804569891B6EEFCD0064035E /* SecondViewController.swift */,
 				804569831B6EEFCD0064035E /* Supporting Files */,
 				802482D61B7B11C300505ADA /* UIImage+Resize.swift */,
 				802482D81B7B1E8700505ADA /* String+AddText.swift */,
@@ -255,7 +252,6 @@
 				80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */,
 				801203E11B75EAB600F14EBF /* LocationsViewController.swift in Sources */,
 				8082C1321B7490190078D270 /* DataModel.xcdatamodeld in Sources */,
-				8045698A1B6EEFCD0064035E /* SecondViewController.swift in Sources */,
 				805772D11B732FBC002C367E /* HudView.swift in Sources */,
 				802482D71B7B11C300505ADA /* UIImage+Resize.swift in Sources */,
 				8082C1341B74949D0078D270 /* Location.swift in Sources */,
