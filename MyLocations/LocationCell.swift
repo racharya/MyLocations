@@ -42,5 +42,15 @@ class LocationCell: UITableViewCell {
         }
         return UIImage()
     }
-
+    
+    //invoked when UIKit loads the object from the storyboard. Ideal place to customize looks.
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        
+        backgroundColor = UIColor.blackColor()
+        descriptionLabel.textColor = UIColor.whiteColor()
+        descriptionLabel.highlightedTextColor = descriptionLabel.textColor
+        addressLabel.textColor = UIColor(white: 1.0, alpha: 0.4)
+        addressLabel.highlightedTextColor = addressLabel.textColor
+    }
 }
