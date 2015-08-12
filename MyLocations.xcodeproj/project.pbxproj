@@ -15,6 +15,7 @@
 		802482D91B7B1E8700505ADA /* String+AddText.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802482D81B7B1E8700505ADA /* String+AddText.swift */; };
 		802482DB1B7B286200505ADA /* MyTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802482DA1B7B286200505ADA /* MyTabBarController.swift */; };
 		802482DD1B7B29A900505ADA /* MyNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802482DC1B7B29A900505ADA /* MyNavigationController.swift */; };
+		802482DF1B7B2B1B00505ADA /* MyImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 802482DE1B7B2B1B00505ADA /* MyImagePickerController.swift */; };
 		804569861B6EEFCD0064035E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569851B6EEFCD0064035E /* AppDelegate.swift */; };
 		804569881B6EEFCD0064035E /* CurrentLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 804569871B6EEFCD0064035E /* CurrentLocationViewController.swift */; };
 		8045698D1B6EEFCD0064035E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8045698B1B6EEFCD0064035E /* Main.storyboard */; };
@@ -48,6 +49,7 @@
 		802482D81B7B1E8700505ADA /* String+AddText.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "String+AddText.swift"; sourceTree = "<group>"; };
 		802482DA1B7B286200505ADA /* MyTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarController.swift; sourceTree = "<group>"; };
 		802482DC1B7B29A900505ADA /* MyNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyNavigationController.swift; sourceTree = "<group>"; };
+		802482DE1B7B2B1B00505ADA /* MyImagePickerController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyImagePickerController.swift; sourceTree = "<group>"; };
 		804569801B6EEFCD0064035E /* MyLocations.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyLocations.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		804569841B6EEFCD0064035E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		804569851B6EEFCD0064035E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 				802482D81B7B1E8700505ADA /* String+AddText.swift */,
 				802482DA1B7B286200505ADA /* MyTabBarController.swift */,
 				802482DC1B7B29A900505ADA /* MyNavigationController.swift */,
+				802482DE1B7B2B1B00505ADA /* MyImagePickerController.swift */,
 			);
 			path = MyLocations;
 			sourceTree = "<group>";
@@ -258,6 +261,7 @@
 				80D42AC61B71B83B007F21CC /* LocationDetailsViewController.swift in Sources */,
 				801203E11B75EAB600F14EBF /* LocationsViewController.swift in Sources */,
 				8082C1321B7490190078D270 /* DataModel.xcdatamodeld in Sources */,
+				802482DF1B7B2B1B00505ADA /* MyImagePickerController.swift in Sources */,
 				802482DD1B7B29A900505ADA /* MyNavigationController.swift in Sources */,
 				805772D11B732FBC002C367E /* HudView.swift in Sources */,
 				802482D71B7B11C300505ADA /* UIImage+Resize.swift in Sources */,
