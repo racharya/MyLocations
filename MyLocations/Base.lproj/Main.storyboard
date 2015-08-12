@@ -311,31 +311,36 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="LocationCell" rowHeight="57" id="WbX-pl-vxL" customClass="LocationCell" customModule="MyLocations" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="22" width="320" height="57"/>
+                                <rect key="frame" x="0.0" y="86" width="320" height="57"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="WbX-pl-vxL" id="1T4-dh-VAh">
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TaG-HU-9Gk">
-                                            <rect key="frame" x="18" y="8" width="294" height="21"/>
+                                            <rect key="frame" x="82" y="8" width="238" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lMx-sB-Y9E">
-                                            <rect key="frame" x="18" y="27" width="294" height="21"/>
+                                            <rect key="frame" x="82" y="27" width="238" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.5" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="qw2-c9-Pwd">
+                                            <rect key="frame" x="15" y="2" width="52" height="52"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        </imageView>
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="addressLabel" destination="lMx-sB-Y9E" id="PRK-lF-iVz"/>
                                     <outlet property="descriptionLabel" destination="TaG-HU-9Gk" id="XPz-ON-e24"/>
+                                    <outlet property="photoImageView" destination="qw2-c9-Pwd" id="p5c-5u-ZwG"/>
                                     <segue destination="76G-f6-stn" kind="modal" identifier="EditLocation" id="gOm-fD-iAv"/>
                                 </connections>
                             </tableViewCell>
@@ -506,6 +511,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="LSV-YY-PX3"/>
+        <segue reference="gOm-fD-iAv"/>
     </inferredMetricsTieBreakers>
 </document>
