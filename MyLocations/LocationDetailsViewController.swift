@@ -57,6 +57,7 @@ class LocationDetailsViewController: UITableViewController {
     @IBOutlet weak var addPhotoLabel: UILabel!
     
     var image : UIImage?
+    var observer: AnyObject!//holds reference to the observer
     
     @IBAction func done() {
         let hudView = HudView.hudInView(navigationController!.view, animated: true)
@@ -123,6 +124,8 @@ class LocationDetailsViewController: UITableViewController {
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
         listenForBackgroundNotification()
+        listenForB
+        var observer: AnyObject!//holds reference to the observer
     }
     
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
@@ -213,12 +216,19 @@ class LocationDetailsViewController: UITableViewController {
     
     //Adds observer for UIApplication...Notification. When notification is received, NSNofitication will call the closure
     func listenForBackgroundNotification() {
-        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { notification in
+        
+        observer = NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { notification in
             if self.presentedViewController != nil {
                 self.dismissViewControllerAnimated(false, completion: nil)
             }
             self.descriptionTextView.resignFirstResponder()
     }
+    }
+    
+    //making sure that the view controller does get destroyed when Tag/Edit location screen is close
+    deinit {
+        println("*** deinit \(self)")
+        NSNotificationCenter.defaultCenter().removeObserver(observer)
     }
 }//end of LocationDetailsViewController class
 
