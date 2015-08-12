@@ -122,6 +122,7 @@ class LocationDetailsViewController: UITableViewController {
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: Selector("hideKeyboard:"))
         gestureRecognizer.cancelsTouchesInView = false
         tableView.addGestureRecognizer(gestureRecognizer)
+        listenForBackgroundNotification()
     }
     
     func stringFromPlacemark(placemark: CLPlacemark) -> String {
@@ -142,7 +143,7 @@ class LocationDetailsViewController: UITableViewController {
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         switch (indexPath.section, indexPath.row) {
         case (0,0): return 88
-        case (1,_): return imageView.hidden ? 44 : 280
+        case (1,_): return imageView.hidden ? 44 : 280 //ternary conditional
         case (2,2):
             addressLabel.frame.size = CGSize(width: view.bounds.size.width - 115, height: 10000)
             addressLabel.frame.origin.x = view.bounds.size.width - addressLabel.frame.size.width - 15
@@ -208,6 +209,16 @@ class LocationDetailsViewController: UITableViewController {
         imageView.hidden = false
         imageView.frame = CGRect(x: 10, y: 10, width: 260, height: 260)
         addPhotoLabel.hidden = true
+    }
+    
+    //Adds observer for UIApplication...Notification. When notification is received, NSNofitication will call the closure
+    func listenForBackgroundNotification() {
+        NSNotificationCenter.defaultCenter().addObserverForName(UIApplicationDidEnterBackgroundNotification, object: nil, queue: NSOperationQueue.mainQueue()) { notification in
+            if self.presentedViewController != nil {
+                self.dismissViewControllerAnimated(false, completion: nil)
+            }
+            self.descriptionTextView.resignFirstResponder()
+    }
     }
 }//end of LocationDetailsViewController class
 
