@@ -274,6 +274,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     //create a UIImagePickerController instance, set its properties to configure the picker, set its delegate, and then present it
     func takePhotoWithCamera() {
         let imagePicker = MyImagePickerController()
+        imagePicker.view.tintColor = view.tintColor
         imagePicker.sourceType = .Camera
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
@@ -297,6 +298,7 @@ extension LocationDetailsViewController: UIImagePickerControllerDelegate, UINavi
     //use photo library for images
     func choosePhotoFromLibrary() {
         let imagePicker = MyImagePickerController()
+        imagePicker.view.tintColor = view.tintColor
         imagePicker.sourceType = .PhotoLibrary
         imagePicker.delegate = self
         imagePicker.allowsEditing = true
