@@ -140,6 +140,7 @@ extension MapViewController: MKMapViewDelegate {
                         annotationView.canShowCallout = true
                         annotationView.animatesDrop = false
                         annotationView.pinColor = .Green
+                        annotationView.tintColor = UIColor(white: 0.0, alpha: 0.5)
                         
                         //4.create new UIButton that looks like a detail disclosure button (blue circled i, or info button).
                         // Hook up button event to a new showLocationDetails() method and add the button to the 
