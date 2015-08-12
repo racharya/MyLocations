@@ -55,7 +55,7 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
         }
         updateLabels()
         configureGetButton()
-        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -241,16 +241,46 @@ class CurrentLocationViewController: UIViewController, CLLocationManagerDelegate
     }
     
     func stringFromPlacemark(placemark : CLPlacemark) -> String {
-        return "\(placemark.subThoroughfare) \(placemark.thoroughfare) \n" +
-               "\(placemark.locality) \(placemark.administrativeArea) " +
-               "\(placemark.postalCode)"
+        //1.
+        var line1 = ""
+        
+        //2.
+        if placemark.subThoroughfare != nil {
+            line1 += placemark.subThoroughfare
+        }
+        
+        //3.
+        if placemark.thoroughfare != nil {
+            if !line1.isEmpty {
+                line1 += " "
+            }
+            line1 += placemark.thoroughfare
+        }
+        //4.
+        var line2 = ""
+        if placemark.locality != nil {
+            line2 += placemark.locality
+        }
+        if placemark.administrativeArea != nil {
+            if !line2.isEmpty {
+                line2 += " "
+            }
+            line2 += placemark.administrativeArea
+        }
+        if placemark.postalCode != nil {
+            if !line2.isEmpty {
+                line2 += " "
+            }
+            line2 += placemark.postalCode
+        }
+        //5.
+        return line1 + "\n" + line2
     }
     
     // called after 1 min whether valid location or not
-  
     func didTimeOut() {
         println("*** TIme out")
-         //if no valid location, stop the location manager
+        //if no valid location, stop the location manager
         if location == nil {
             stopLocationManager()
             //error domain is not kCLErrorDomain because this error comes from within the app
