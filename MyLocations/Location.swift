@@ -20,6 +20,7 @@ class Location: NSManagedObject, MKAnnotation {
     @NSManaged var category: String
     @NSManaged var placemark: CLPlacemark?
     @NSManaged var date: NSDate
+    @NSManaged var photoID: NSNumber?
 
     /* Conforming to MKAnnotation protocol */
     // all of the following variables are read-only computed properties : don't store a value in mem location
@@ -39,4 +40,8 @@ class Location: NSManagedObject, MKAnnotation {
         return category
     }
     /* end of MKAnnotation protocol */
+    
+    var hasPhoto: Bool {
+        return photoID != nil
+    }
 }// end of Location class
