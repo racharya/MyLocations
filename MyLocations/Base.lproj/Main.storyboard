@@ -346,7 +346,7 @@
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lMx-sB-Y9E">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="101" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Address" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="lMx-sB-Y9E">
                                             <rect key="frame" x="82" y="27" width="238" height="21"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -360,7 +360,7 @@
                                     </subviews>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="addressLabel" destination="lMx-sB-Y9E" id="PRK-lF-iVz"/>
+                                    <outlet property="addressLabel" destination="lMx-sB-Y9E" id="OzJ-oo-gvO"/>
                                     <outlet property="descriptionLabel" destination="TaG-HU-9Gk" id="XPz-ON-e24"/>
                                     <outlet property="photoImageView" destination="qw2-c9-Pwd" id="p5c-5u-ZwG"/>
                                     <segue destination="76G-f6-stn" kind="modal" identifier="EditLocation" id="gOm-fD-iAv"/>
@@ -537,7 +537,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="Jo3-JT-Cu2"/>
+        <segue reference="gOm-fD-iAv"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" red="1" green="0.93333333333333335" blue="0.53333333333333333" alpha="1" colorSpace="calibratedRGB"/>
 </document>

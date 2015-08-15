@@ -116,11 +116,7 @@ class LocationDetailsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //makes only tabel view black, not the cells in them
-        tableView.backgroundColor = UIColor.blackColor()
-        tableView.separatorColor = UIColor(white: 1.0, alpha: 0.2)
-        tableView.indicatorStyle = .White
-        
+       
         // checks whether locationToEdit is set,if not nil we are editing an existing Location Obj
         if let location = locationToEdit {
             title = "Edit Location" //title of the screen becomes "Edit Location"
@@ -282,6 +278,7 @@ class LocationDetailsViewController: UITableViewController {
         forRowAtIndexPath indexPath: NSIndexPath) {
         
         cell.backgroundColor = UIColor.blackColor()
+        
         if let textLabel = cell.textLabel {
         textLabel.textColor = UIColor.whiteColor()
         textLabel.highlightedTextColor = textLabel.textColor
@@ -295,7 +292,7 @@ class LocationDetailsViewController: UITableViewController {
         cell.selectedBackgroundView = selectionView
         
 //        if indexPath.row == 2 {
-//                let addressLabel = cell.viewWithTag(100) as! UILabel
+//                let addressLabel = cell.viewWithTag(101) as! UILabel
 //                addressLabel.textColor = UIColor.whiteColor()
 //                addressLabel.highlightedTextColor = addressLabel.textColor
 //        }
